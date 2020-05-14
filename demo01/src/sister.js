@@ -26,6 +26,7 @@ class Sister extends Component {
     }
     // 使用到的方法直接在这里定义
     inputChange(e) {
+        console.log(e);
         console.log(e.target.value);
         /**
          * 这里是无法直接赋值的,因为this指向为空
