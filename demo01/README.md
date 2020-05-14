@@ -4,7 +4,7 @@
 Runs the app in the development mode.<br />
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 ### JSX
-   *** 由react发明的，它是由JavaScript和xml组成，例见App.js中render
+   - 由react发明的，它是由JavaScript和xml组成，例见App.js中render
    *** 里面元素定义类名不可只使用class,必须小驼峰className 
    *** 里面可镶嵌JS代码以{}包裹 
 ### 在JSX中使用一些方法，须使用bind指定指向
