@@ -13,7 +13,7 @@
   | 《CSS 揭秘》                | 人民邮电出版社 | [希]韦鲁(Lea Verou)  |                                |        |
   | 《图解 HTTP 》              | 人民邮电出版社 | [日]上野宣           |                                |        |
   | 《JavaScript 语言精粹 》    | 电子工业出版社 | Douglas Crockford    |                                |        |
-  | 《JavaScript 高级程序设计》 | 人民邮电出版社 | [美]Nicholas C.Zakas |                                |        |
+  | 《JavaScript 高级程序设计》 | 人民邮电出版社 | [美]Nicholas C.Zakas | <font color="skyblue">✔</font> |        |
 
   <!--
    :- 和 :-: 和-: 分别实现表格文字左中右对齐
