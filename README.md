@@ -9,10 +9,10 @@
   | 书名                        |     出版社     | 作者                 |             进行中             | 已结束 |
   | :-------------------------- | :------------: | :------------------- | :----------------------------: | :----: |
   | 《深入浅出 NodeJs》         | 人民邮电出版社 | 朴灵                 |                                |        |
-  | 《算法图解 》               | 人民邮电出版社 | [美]Aditya Bhargava  | <font color="skyblue">✔</font> |        |
+  | 《算法图解 》               | 人民邮电出版社 | [美]Aditya Bhargava  | <font color="skyblue">✔</font> |<font color="skyblue">✔</font>        |
   | 《CSS 揭秘》                | 人民邮电出版社 | [希]韦鲁(Lea Verou)  |                                |        |
   | 《图解 HTTP 》              | 人民邮电出版社 | [日]上野宣           |                                |        |
-  | 《JavaScript 语言精粹 》    | 电子工业出版社 | Douglas Crockford    |                                |        |
+  | 《JavaScript 语言精粹 》    | 电子工业出版社 | Douglas Crockford    |  <font color="skyblue">✔</font>                              |        |
   | 《JavaScript 高级程序设计》 | 人民邮电出版社 | [美]Nicholas C.Zakas | <font color="skyblue">✔</font> |        |
 
   <!--
