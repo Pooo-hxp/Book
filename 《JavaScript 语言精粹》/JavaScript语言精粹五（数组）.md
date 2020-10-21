@@ -129,12 +129,24 @@ function isArray(obj) {
 #### 方法
 
 - `JavaScript` 中提供了一套数组可用的方法，这些数组存储在 Array.prototype 中。
--
+  > 可在控制台进行查看 `dir(Array.prototype)`
+- 无论是 `Object.prototype` 还是 `Array.prototype` 都是可扩充的
+- 那么我们可以给数组扩充一个方法，用于数组的计算
 
 ```JavaScript
-
-
-
+ Array.methods('reduce', function (f, value) { })
+//--书中给出是上方写法，我就以自己喜欢的方式改写了
+Array.prototype.fakereduce = function (fn, value) {
+  for (let i = 0; i < this.length; i++) {
+    value = fn(this[i], value)
+  }
+  return value;
+}
+let data = [1, 2, 4, 6];
+let sum = (a, b) => {
+  return a + b;
+}
+data.fakereduce(sum, 0)//13
 ```
 
 #### 指定初始值
