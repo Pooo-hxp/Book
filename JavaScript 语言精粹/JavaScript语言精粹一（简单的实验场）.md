@@ -47,21 +47,48 @@
 - 如下相等：
 
 ```javascript
-w = x = y = z;
-w = x = y = z;
+  w = x = y = z;
+  w = （x = (y = z));
+//上方x这个括号我故意改成中文，不然格式化就自动把括号去了
+var a=0,b=2,c=3,d=4,e=5,f=6,g=7,q,w;
 
-var a = 0,
-  b = 2,
-  c = 3,
-  d = 4,
-  e = 5,
-  f = 6,
-  g = 7,
-  q,
-  w;
-
-q = a ? b : c ? d : e ? f : g;
+q = a ? b : (c ? d : (e ? f : g));
 w = a ? b : c ? d : e ? f : g;
-console.log(q); //4
-console.log(w); //4
+console.log(q)//4
+console.log(w)//4
+```
+
+- 在三元运算符 ? 中,有三个运算数，如果第一个运算数为真，则产生第二个运算数的值，否则产生第三个运算符的值。
+- 因为我接触三元运算符也挺长的，所以总结了我自己遇到的问题
+
+```javascript
+/**
+ * 、直接 return 返回值问题
+*/
+  let Flag=true;
+  function get(){
+    //--错误的写法--Unexpected token 'return'
+    Flag? return 'success' : return 'erro'
+    //--正确的写法--success
+    return Flag? 'success':'erro';
+  }
+  get();
+/**
+ * 、在三元运算符中夹杂执行函数问题
+ * 先定义再引用，或直接编写IIFE(自执行函数)
+*/
+  let Flag=true;
+  function opt1(){
+    return 'first'
+  }
+  function second(){
+    return 'second'
+  }
+  Flag?first():second()
+ // ------------------------
+ Flag?(function(){
+   return 'first'
+ }()):(function(){
+   return 'second'
+ }())
 ```
