@@ -101,6 +101,31 @@ console.log(father.age); //23
     son: {first: "Tomato", second: "cucumber"}
 ```
 
+#### 引用
+
+- 对象可通过引用来传递，但它们永远不会被复制
+  - 无论 refBox 还是 getBox 它们都指向同一个对象引用，因此共享属性
+
+```JavaScript
+  var box={
+    check:'book',
+  }
+  var refBox=box;
+  box.price='25元';
+  var getBox=box.price;//'25元'
+```
+
+- x、y、z 它们每个都引用了不同的对象，因此也各不影响
+
+```javascript
+var x = {},
+  y = {},
+  z = {};
+x == y; //false
+var a = (b = c = {});
+a === b; //true
+```
+
 ---
 
 总结：书中起步没有太多内容，过于简略介绍，内容集中在 4-6 章，期待本书后边的内容。
