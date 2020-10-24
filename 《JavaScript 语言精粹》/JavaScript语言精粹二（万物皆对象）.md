@@ -72,9 +72,34 @@ let gender = father.gender; //undefined
 
 > 注意：在 JavaScript 中连接符（ - ）通常是不合法的，但允许使用下划线（ \_ ）
 
-#### 函数
+#### 更新
 
-- 函数字面量定义了函数值。它可以有一个可选的名字。用于递归调用自己，具体可看（算法图解二（递归及内存存储原理））
+- 对象中的值可以通过赋值来进行更新，若属性名已经存在，那么这个属性会被覆盖掉。
+
+```javascript
+var father = {
+  name: "Potato",
+  age: "22",
+  son: {
+    first: "Tomato",
+    second: "cucumber",
+  },
+};
+console.log(father.age); //22
+father.age = 23;
+console.log(father.age); //23
+```
+
+- 若该对象之前没有拥有该属性名，则会被扩充到此对象中。
+
+```javascript
+  father.city='HangZhou';
+{name: "Potato", age: 23, son: {…}, city: "HangZhou"}
+    age: 23
+    city: "HangZhou"
+    name: "Potato"
+    son: {first: "Tomato", second: "cucumber"}
+```
 
 ---
 
