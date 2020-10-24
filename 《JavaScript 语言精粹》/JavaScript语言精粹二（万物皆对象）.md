@@ -47,10 +47,30 @@ var father = {
 };
 ```
 
-#### 字面量
+#### 检索
 
-- 对象字面量是一种可以方便地按指定规格创建新对象的表示法，属性名可以是标识符或字符串，这些名字被当做字面量名而不是变量名来对待，所以对象的属性名在编译时才能知道，属性的值就是表达式。
-- 同理，数组字面量是一种可以方便地按指定规格创建新数组的表示法
+- 要检索对象里包含的值，可用以`[ ]`表达式，若字符串是合法标识符而非保留字，则也可用`.`调用，常规下，优先使用紧凑且可读性好的`.`调用。
+
+```javascript
+father.name; //"Potato"
+father["name"]; //"Potato"
+```
+
+- 若尝试检索不存在的成员属性值，则返回`undefined`
+
+```javascript
+father.grandson; //undefined
+father["grandson"]; //undefined
+```
+
+- 利用运算符`||`可以进行默认值填充：
+
+```javascript
+let dear = father.daughter || "none"; //none
+let gender = father.gender; //undefined
+```
+
+> 注意：在 JavaScript 中连接符（ - ）通常是不合法的，但允许使用下划线（ \_ ）
 
 #### 函数
 
