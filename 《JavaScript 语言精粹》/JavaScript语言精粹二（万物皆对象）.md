@@ -150,6 +150,8 @@ console.log(goodsInfo.check)//'book'
 console.log(goodsInfo.getPrice)//'25元'
 ```
 
+> 注意：原型链只有检索值时才用到，若尝试回去对象中某属性值时，它不存在此属性名，则`javascript`会试着从原型对象中获取属性值，若原型对象中也没有，则从原型中寻找，以此类推至`Object.prototype`,无则返回`undefined`。
+
 ---
 
 总结：书中起步没有太多内容，过于简略介绍，内容集中在 4-6 章，期待本书后边的内容。
