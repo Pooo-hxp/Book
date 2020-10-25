@@ -126,6 +126,30 @@ var a = (b = c = {});
 a === b; //true
 ```
 
+#### 原型
+
+- 每个对象都关联到一个原型对象，并可从中继承相应属性。所有通过对象字面量创建的对象都连接到 Object.prototype,它也是 JavaScript 中的终点对象。
+- 当创建一个新对象时，可以选择某个对象为其原型，可以尝试给 Object 添加一个 create 方法，它可以创建一个使用**原对象**作为其**原型**的新对象。
+
+```JavaScript
+  var box={
+    check:'book',
+    getPrice:function(){
+      return '25元'
+    }
+  }
+if(typeof Object.beget!=='function'){
+  Object.create=function(o){
+    var F=function(){};
+    F.prototype=o;//使其原型改为传进来的对象
+    return new F();
+  }
+}
+var goodsInfo=Object.create(box)
+console.log(goodsInfo.check)//'book'
+console.log(goodsInfo.getPrice)//'25元'
+```
+
 ---
 
 总结：书中起步没有太多内容，过于简略介绍，内容集中在 4-6 章，期待本书后边的内容。
