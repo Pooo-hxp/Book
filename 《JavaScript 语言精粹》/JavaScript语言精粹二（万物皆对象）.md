@@ -134,6 +134,10 @@ a === b; //true
 ```JavaScript
   var box={
     check:'book',
+    checkbox:{
+      check:'pencil',
+      price:'30元'
+    },
     getPrice:function(){
       return '25元'
     }
@@ -147,10 +151,26 @@ if(typeof Object.beget!=='function'){
 }
 var goodsInfo=Object.create(box)
 console.log(goodsInfo.check)//'book'
-console.log(goodsInfo.getPrice)//'25元'
+console.log(goodsInfo.getPrice())//'25元'
 ```
 
 > 注意：原型链只有检索值时才用到，若尝试回去对象中某属性值时，它不存在此属性名，则`javascript`会试着从原型对象中获取属性值，若原型对象中也没有，则从原型中寻找，以此类推至`Object.prototype`,无则返回`undefined`。
+
+#### 反射
+
+- 检查并确定对象具有的属性，只有进行检索并验证即可，通常使用`typeof`
+
+```javascript
+typeof box.check; //"string"
+typeof box.checkbox; //"object"
+typeof box.getPrice; //"function"
+```
+
+- 但原型链中的属性还会产生同一个值
+
+```javascript
+
+```
 
 ---
 
