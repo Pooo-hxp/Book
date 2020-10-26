@@ -166,7 +166,21 @@ typeof box.checkbox; //"object"
 typeof box.getPrice; //"function"
 ```
 
-- 但原型链中的属性还会产生同一个值
+- 原型链
+- 但原型链中的任何属性还会产生同一个值`constructor`，例如：
+
+```javascript
+typeof box.toString; //'function'
+typeof box.constructor; //'function'
+```
+
+- 为了处理掉这些不需要的属性，可以换种方法来验证，比如利用`hasOwnProperty`
+- 它用来检验是否是对象独有的属性，它将返回对应的布尔值，它不会检查原型链
+
+```javascript
+box.hasOwnProperty("check"); //true
+box.hasOwnProperty("getcheck"); //false
+```
 
 ```javascript
 
