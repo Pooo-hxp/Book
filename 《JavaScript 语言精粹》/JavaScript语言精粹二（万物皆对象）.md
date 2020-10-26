@@ -182,8 +182,41 @@ box.hasOwnProperty("check"); //true
 box.hasOwnProperty("getcheck"); //false
 ```
 
-```javascript
+#### 枚举
 
+- for in 语句用来遍历对象中的所有属性名。该枚举过程会列出所有的属性（包括函数和原型链中的属性）
+- 同时一般利用 typeof 来排除不想要的函数
+
+```javascript
+var box = {
+  check: "book",
+  checkbox: {
+    check: "pencil",
+    price: "30元",
+  },
+  getPrice: function () {
+    return "25元";
+  },
+};
+
+for (name in box) {
+  if (typeof box[name] !== "function") {
+    console.log(name + ":" + box[name]);
+    //check:book
+    //checkbox:[object Object]
+  }
+}
+```
+
+- 因为属性名出现的顺序具有不确定性，因此要对可能出现的顺序有所准备
+- 若想避免这种不确定性出现，那么应避免出现`for in`语句，转而换为数组循环
+
+```javascript
+var box = ["book", "pencil", "30元"];
+
+for (let i = 0; i < box.length; i++) {
+  console.log(box[i]);
+}
 ```
 
 ---
