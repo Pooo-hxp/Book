@@ -241,6 +241,26 @@ delete fakePro.hobby;
 console.log(fakePro.hobby); //'coding'
 ```
 
+#### 减少全局变量污染
+
+- `JavaScript`可以随意定义全局变量（当然，这在方便的同时带来很多隐患）
+- 为降低这些隐患，一般为其应用创建唯一全局变量容器
+- 把全局资源都归纳至一个名称空间下，则会显著降低命名冲突。
+
+```javascript
+var box = {};
+box.content = {
+  first_box: "tomato",
+  second_box: "cucumber",
+  third_box: "potato",
+};
+box.price = {
+  tomato: "25",
+  cucumber: "15",
+  potato: "10",
+};
+```
+
 ---
 
-总结：书中起步没有太多内容，过于简略介绍，内容集中在 4-6 章，期待本书后边的内容。
+总结：本章节描述的是在`JavaScript`语言中的对象的基本概念，更加多元化的使用方法在函数中会讲解。
