@@ -16,7 +16,7 @@
 - `javascript`中的函数就是对象，对象是‘键值对’的集合，并且隐形的连接到原型对象
   - 对象字面量产生的对象连接到 Object.prototype
   - 函数对象连接到 Function.prototype（此原型对象本身连接到 Object.prototype）
-- 函数对象在创建时，都配有一个 prototype 属性[Foo.prototype]，它的值是一个拥有 constructor 属性，且属性值为该函数的对象[Foo.prototype.constructor==Foo]
+- 函数对象在创建时，都配有一个**prototype** 属性`[Foo.prototype]`，它的值是一个拥有**constructor**属性，且属性值为该函数的对象`[Foo.prototype.constructor==Foo]`
   - 书中的这句话有些拗口且不容易理解，所以我觉得用代码会直观一些
 
 ```javascript
@@ -32,18 +32,24 @@ console.log(poo.__proto__.constructor); //Foo()
 console.log(Foo.prototype.constructor); //Foo()
 ```
 
-- 属性名可以是包含空字符串在内的任意字符串。在对象字面量中，若属性名合法标识符（非保留字），则不强制要求用引号括住属性名，所以上文 `name_line` 下划线标准写法中引号可以省略，而 `name-cut` 减号的""必须有。
-- 并且，对象可嵌套，如下：
+### 函数字面量
+
+- 函数对象可通过函数字面量来创建，比如：
 
 ```javascript
-var father = {
-  name: "Potato",
-  age: "22",
-  son: {
-    first: "Tomato",
-    second: "cucumber",
-  },
+var add = function (par1, par2) {
+  return par1 + par2;
 };
+```
+
+- 函数字面量分为四个部分
+  - 第 1 部分是保留字`function`
+  - 第 2 部分是函数名（可省略--匿名函数），函数可通过函数名递归调用自身
+  - 第 3 部分是在调用（圆括号）中的一组参数，多个以逗号分隔。这些参数称之为函数中的变量
+  - 第 4 部分是在执行（大括号）中的一组语句，它们是函数的主题，在函数调用时依次执行
+
+```javascript
+
 ```
 
 #### 检索
