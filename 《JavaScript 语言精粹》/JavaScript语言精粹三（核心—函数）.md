@@ -6,31 +6,30 @@
 
 ## 起步：
 
-- JavaScript 中极具特色的设计就是其函数的实现了
-- `JavaScript` 的简单数据类型包括数字、字符串、布尔值、`null` 和 `undefined `值，其他值为对象。
-  - 数字、字符串和布尔值貌似为对象，因为它们具有方法，但它们是不可变的。
-- `JavaScript` 中对象是可变的键控集合，在 JS 中数组、函数、正则当然也包括对象它们都是对象。
-  - 对象是属性的容器，每个属性都拥有键名和值，属性键名可以是包括空字符串在内的任意字符串，值也可以是除`undefined`以外的任意值。
-  - `JavaScript`里的对象是无类型的（class-fee），它对新属性的名字和值没有限制。
-  - 对象适用于汇集和管理数据，对象也可以包括对象，所以它更容易形成树状或图形结构。
-  - `JavaScript`包含一种原型链的特性，允许对象继承另一个对象的属性，正确的使用可减少对象初始化消耗的时间及内存
+- `JavaScript` 中极具特色的设计就是其函数的实现了
+- 函数：即一组语句，它们是 JS 的基础模块单元，用于代码复用，信息隐藏和组合调用。
+- 编程：什么为编程？即把一组需求分解成一组函数和数据结构的技能。
   ***
 
-### 对象字面量
+### 函数对象
 
-- 对象字面量提供一种非常方便地创建新对象值得表示法。
-  - 包围在一对花括号中的零或多个‘键/值’对。
-
-如下：
+- `javascript`中的函数就是对象，对象是‘键值对’的集合，并且隐形的连接到原型对象
+  - 对象字面量产生的对象连接到 Object.prototype
+  - 函数对象连接到 Function.prototype（此原型对象本身连接到 Object.prototype）
+- 函数对象在创建时，都配有一个 prototype 属性[Foo.prototype]，它的值是一个拥有 constructor 属性，且属性值为该函数的对象[Foo.prototype.constructor==Foo]
+  - 书中的这句话有些拗口且不容易理解，所以我觉得用代码会直观一些
 
 ```javascript
-let empty_obj = {};
-
-let obj = {
-  name_line: "Pooo",
-  "name-cut": "Pooo",
-  gender: "boy",
-};
+/**
+ *  Foo() 构造函数
+ * Foo.prototype 是构造函数Foo的原型/ 是poo的原型对象
+ * poo.__prototype__ 也是指向原型对象
+ */
+function Foo() {} //构造函数
+var poo = new Foo(); //实例化一个对象
+console.log(poo.__proto__ === Foo.prototype); //true ,说明是指向同一个原型对象
+console.log(poo.__proto__.constructor); //Foo()
+console.log(Foo.prototype.constructor); //Foo()
 ```
 
 - 属性名可以是包含空字符串在内的任意字符串。在对象字面量中，若属性名合法标识符（非保留字），则不强制要求用引号括住属性名，所以上文 `name_line` 下划线标准写法中引号可以省略，而 `name-cut` 减号的""必须有。
