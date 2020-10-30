@@ -69,32 +69,11 @@ var Aha = parent();
 Aha(); //'poo'
 ```
 
-#### 检索
-
-- 要检索对象里包含的值，可用以`[ ]`表达式，若字符串是合法标识符而非保留字，则也可用`.`调用，常规下，优先使用紧凑且可读性好的`.`调用。
-
-```javascript
-father.name; //"Potato"
-father["name"]; //"Potato"
-```
-
-- 若尝试检索不存在的成员属性值，则返回`undefined`
-
-```javascript
-father.grandson; //undefined
-father["grandson"]; //undefined
-```
-
-- 利用运算符`||`可以进行默认值填充：
-
-```javascript
-let dear = father.daughter || "none"; //none
-let gender = father.gender; //undefined
-```
+#### 函数的调用
 
 > 注意：在 JavaScript 中连接符（ - ）通常是不合法的，但允许使用下划线（ \_ ）
 
-#### 更新
+#### 函数的方法调用模式
 
 - 对象中的值可以通过赋值来进行更新，若属性名已经存在，那么这个属性会被覆盖掉。
 
