@@ -82,71 +82,48 @@ Aha(); //'poo'
 - 调用运算符是跟在函数表达式后的一对圆括号，括号内可包含零或多个表达式，每个表达式产生一个参数值
 - 实参与形参个数不匹配时不会出错，会忽略超出的参数值，会替换缺少的值为`undefined`。
 
-#### 函数的方法调用模式
+#### 方法调用模式
 
-- 对象中的值可以通过赋值来进行更新，若属性名已经存在，那么这个属性会被覆盖掉。
-
-```javascript
-
-```
-
-- 若该对象之前没有拥有该属性名，则会被扩充到此对象中。
+- 当一个函数被保存为对象的某一属性时，称它为一个方法，当该方法被调用时，this 就绑定到了该对象，若调用表达式包含 `.` 或者 `[ ]` 时，它被当做一个方法调用。
+- 例如：
 
 ```javascript
-
+var myObj = {
+  val: 233,
+  getVal: function (par) {
+    this.val += typeof par === "number" ? par : 1;
+  },
+};
+myObj.getVal();
+console.log(myObj.val); //234
+/*-------------------*/
+myObj.getVal(433);
+console.log(myObj.val); //666
 ```
 
-#### 引用
+- 对象身上的方法可以通过 this 访问该对象身上的属性，因此也能进行取值和修改。
+- 通过 this 取得它所属对象的上下文的方法，称之为公共方法。
 
-- 对象可通过引用来传递，但它们永远不会被复制
-  - 无论 refBox 还是 getBox 它们都指向同一个对象引用，因此共享属性
+#### 函数调用模式
+
+-
 
 ```JavaScript
-  var box={
-    check:'book',
-  }
-  var refBox=box;
-  box.price='25元';
-  var getBox=box.price;//'25元'
+
 ```
 
-- x、y、z 它们每个都引用了不同的对象，因此也各不影响
+-
 
 ```javascript
-var x = {},
-  y = {},
-  z = {};
-x == y; //false
-var a = (b = c = {});
-a === b; //true
+
 ```
 
 #### 原型
 
-- 每个对象都关联到一个原型对象，并可从中继承相应属性。所有通过对象字面量创建的对象都连接到 Object.prototype,它也是 JavaScript 中的终点对象。
-- 当创建一个新对象时，可以选择某个对象为其原型，可以尝试给 Object 添加一个 create 方法，它可以创建一个使用**原对象**作为其**原型**的新对象。
+- 。
 
 ```JavaScript
-  var box={
-    check:'book',
-    checkbox:{
-      check:'pencil',
-      price:'30元'
-    },
-    getPrice:function(){
-      return '25元'
-    }
-  }
-if(typeof Object.beget!=='function'){
-  Object.create=function(o){
-    var F=function(){};
-    F.prototype=o;//使其原型改为传进来的对象
-    return new F();
-  }
-}
-var goodsInfo=Object.create(box)
-console.log(goodsInfo.check)//'book'
-console.log(goodsInfo.getPrice())//'25元'
+
 ```
 
 > 注意：原型链只有检索值时才用到，若尝试回去对象中某属性值时，它不存在此属性名，则`javascript`会试着从原型对象中获取属性值，若原型对象中也没有，则从原型中寻找，以此类推至`Object.prototype`,无则返回`undefined`。
