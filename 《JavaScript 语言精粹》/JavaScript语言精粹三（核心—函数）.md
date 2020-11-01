@@ -78,28 +78,13 @@ Aha(); //'poo'
 - 对象中的值可以通过赋值来进行更新，若属性名已经存在，那么这个属性会被覆盖掉。
 
 ```javascript
-var father = {
-  name: "Potato",
-  age: "22",
-  son: {
-    first: "Tomato",
-    second: "cucumber",
-  },
-};
-console.log(father.age); //22
-father.age = 23;
-console.log(father.age); //23
+
 ```
 
 - 若该对象之前没有拥有该属性名，则会被扩充到此对象中。
 
 ```javascript
-  father.city='HangZhou';
-{name: "Potato", age: 23, son: {…}, city: "HangZhou"}
-    age: 23
-    city: "HangZhou"
-    name: "Potato"
-    son: {first: "Tomato", second: "cucumber"}
+
 ```
 
 #### 引用
@@ -242,7 +227,7 @@ delete fakePro.hobby;
 console.log(fakePro.hobby); //'coding'
 ```
 
-#### 减少全局变量污染
+#### 全局变量污染
 
 - `JavaScript`可以随意定义全局变量（当然，这在方便的同时带来很多隐患）
 - 为降低这些隐患，一般为其应用创建唯一全局变量容器
