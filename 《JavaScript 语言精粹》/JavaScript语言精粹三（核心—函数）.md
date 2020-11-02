@@ -104,12 +104,21 @@ console.log(myObj.val); //666
 - 对象身上的方法可以通过 this 访问该对象身上的属性，因此也能进行取值和修改。
 - 通过 this 取得它所属对象的上下文的方法，称之为公共方法。
 
-#### 函数调用模式
+#### 构造器调用模式
 
--
+- `JavaScript`是基于原型继承的语言，对象可直接从其他对象继承属性
+- 如果在一个函数前面加上 `new` 关键字调用，那么底层是会创建一个连接到该函数 `prototype` 成员的新对象，同时绑定 `this` 至新对象
+- 例如：
 
 ```JavaScript
-
+var Poo=function(city){
+  this.citys=city;
+}
+Poo.prototype.getCity=function(){
+  return this.citys;
+}
+var goWhere=new Poo('ZhengZhou');
+console.log(goWhere.getCity());// ZhengZhou
 ```
 
 -
