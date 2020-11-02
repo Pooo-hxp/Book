@@ -121,72 +121,63 @@ var goWhere=new Poo('ZhengZhou');
 console.log(goWhere.getCity());// ZhengZhou
 ```
 
+- 函数若通常使用 `new` 来结合调用，那么它就被称之为构造器函数
+- 约定俗成，这类函数要首字母大写用以区分
+
+#### Apply 调用模式
+
+- `apply` 方法可以构建一个参数数组传递给调用函数，并且可自由选择 `this` 的指向
+- `apply` 中通常第一个参数为 `this` 绑定的值，第二个为参数数组
+
+```JavaScript
+
+
+var add = function (par1, par2) {
+  return par1 + par2;
+};
+var arrs=[1,2];
+var count=add.apply(null,arrs) //3
+//-构造一个包含type成员的对象,types并没有getRtx方法，但通过apply，仍可使用
+var Poo=function(city){
+  this.type=type;
+}
+Poo.prototype.getRtx=function(){
+  return this.type;
+}
+var types={
+  type:'RTX3080'
+}
+var getRtx=Poo.prototype.getRtx.apply(types);//RTX3080
+```
+
+> 注意：。
+
+#### 反射
+
 -
 
 ```javascript
 
 ```
 
-#### 原型
+- 原
 
-- 。
-
-```JavaScript
+```javascript
 
 ```
 
-> 注意：原型链只有检索值时才用到，若尝试回去对象中某属性值时，它不存在此属性名，则`javascript`会试着从原型对象中获取属性值，若原型对象中也没有，则从原型中寻找，以此类推至`Object.prototype`,无则返回`undefined`。
-
-#### 反射
-
-- 检查并确定对象具有的属性，只有进行检索并验证即可，通常使用`typeof`
+-
 
 ```javascript
-typeof box.check; //"string"
-typeof box.checkbox; //"object"
-typeof box.getPrice; //"function"
-```
 
-- 原型链
-- 但原型链中的任何属性还会产生同一个值`constructor`，例如：
-
-```javascript
-typeof box.toString; //'function'
-typeof box.constructor; //'function'
-```
-
-- 为了处理掉这些不需要的属性，可以换种方法来验证，比如利用`hasOwnProperty`
-- 它用来检验是否是对象独有的属性，它将返回对应的布尔值，它不会检查原型链
-
-```javascript
-box.hasOwnProperty("check"); //true
-box.hasOwnProperty("getcheck"); //false
 ```
 
 #### 枚举
 
-- for in 语句用来遍历对象中的所有属性名。该枚举过程会列出所有的属性（包括函数和原型链中的属性）
-- 同时一般利用 typeof 来排除不想要的函数
+-
 
 ```javascript
-var box = {
-  check: "book",
-  checkbox: {
-    check: "pencil",
-    price: "30元",
-  },
-  getPrice: function () {
-    return "25元";
-  },
-};
 
-for (name in box) {
-  if (typeof box[name] !== "function") {
-    console.log(name + ":" + box[name]);
-    //check:book
-    //checkbox:[object Object]
-  }
-}
 ```
 
 - 因为属性名出现的顺序具有不确定性，因此要对可能出现的顺序有所准备
