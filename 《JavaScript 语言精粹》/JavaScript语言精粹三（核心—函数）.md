@@ -166,10 +166,17 @@ var count = function () {
 console.log(count(1, 3, 4, 6, 7, 12)); //33
 ```
 
-- 原
+- 因为设计上的失误，导致 `arguments` 并不是一个真正的数组，而是一个类数组对象`（array-like）`
+- `arguments`是一个拥有 length 属性的特殊对象，但它不具备任何数组方法
+  - 数组对象的类型是 `Array`， `arguments`的类型是 Object；
+  - `arguments` 不能直接调用数组 `API`（不具备任何数组方法）；
+  - 数组遍历可以用 for in 和 for 循环，`arguments` 只能用 for 循环遍历；
 
 ```javascript
-
+//把函数中的arguments转为数组
+var newArr = Array.prototype.slice.call(arguments);
+console.log(Array.isArray(arguments)); //false
+console.log(Array.isArray(newArr)); //true
 ```
 
 -
