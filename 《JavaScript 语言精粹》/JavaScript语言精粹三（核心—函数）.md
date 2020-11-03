@@ -179,15 +179,25 @@ console.log(Array.isArray(arguments)); //false
 console.log(Array.isArray(newArr)); //true
 ```
 
--
+#### 返回
+
+- 当函数被调用时，从起始语句执行到遇到函数体 `}` 时结束，然后移交控制权至调用该函数的程序。
+- `retrun` 语句可使函数结束执行提前返回，若无指定返回值，则返回 `undefined`。
+- js 中大部分函数在未设置 `return` 值时都会默认返回一个 `underfined`。
+- `getReturn` 不加执行体`（）`时，只是单纯的是一个指向函数的指针而已。
+- `getReturn()` 则是表示执行函数，并且获取函数执行的结果。
 
 ```javascript
-
+var getReturn = function () {
+  return "hi~ Poo";
+};
+getReturn; //ƒ (){ return 'hi~ Poo'}
+getReturn(); //hi~ Poo
 ```
 
-#### 枚举
+#### 返回
 
--
+- `JavaScript` 提供了异常处理机制，当正常流程中出现干扰时，程序会抛出一个异常
 
 ```javascript
 
