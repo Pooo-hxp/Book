@@ -150,14 +150,20 @@ var types={
 var getRtx=Poo.prototype.getRtx.apply(types);//RTX3080
 ```
 
-> 注意：。
+#### 参数
 
-#### 反射
-
--
+- 当函数被调用时，都会拥有一个 `arguments`数组，它里面包含了所有被调用时，传递给它的参数
 
 ```javascript
-
+var count = function () {
+  var i = 0;
+  sum = 0;
+  for (i; i < arguments.length; i++) {
+    sum += arguments[i];
+  }
+  return sum;
+};
+console.log(count(1, 3, 4, 6, 7, 12)); //33
 ```
 
 - 原
