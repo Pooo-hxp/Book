@@ -216,6 +216,35 @@ Number.methods('getInteger',function(){
 console.log((5/3).getInteger())//1
 ```
 
+- 这种方法虽然方便，但是有很大的隐患，比如可能会覆盖类库中原有的方法
+- 所以上方的代码优化后如下：
+
+```javascript
+Function.prototype.method = function (name, fun) {
+  if (!this.prototype[name]) {
+    this.prototype[name] = fun;
+  }
+  return this;
+};
+```
+
+> 注意：通常避免混淆，可以利用 `hasOwnProperty` 来判断是否是自身属性（非继承）来的
+
+- 例如：
+
+```javascript
+var Poo=function(){
+  this.name='poo'
+  this.getName=function(){
+    console.log(`hi~ `${this.name})
+  }
+}
+let aHa=new Poo()
+console.log(aHa.hasOwnProperty('name')) //true
+console.log(aHa.hasOwnProperty('getName')) //true
+console.log(aHa.hasOwnProperty('toNumber'))//false
+```
+
 #### 删除
 
 - delete 运算符可以用来删除某对象的属性，若此对象含有该属性，则移除（不会对原型链中的对象产生影响）
