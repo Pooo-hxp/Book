@@ -195,23 +195,25 @@ getReturn; //ƒ (){ return 'hi~ Poo'}
 getReturn(); //hi~ Poo
 ```
 
-#### 返回
+#### 扩充类型的功能
 
-- `JavaScript` 提供了异常处理机制，当正常流程中出现干扰时，程序会抛出一个异常
+- `JavaScript` 可以扩充语言的基本类型，比如避免每次添加方法时都写入 `prototype` 名称
 
 ```javascript
-
+Function.prototype.method = function (name, fun) {
+  this.prototype[name] = fun;
+  return this;
+};
 ```
 
-- 因为属性名出现的顺序具有不确定性，因此要对可能出现的顺序有所准备
-- 若想避免这种不确定性出现，那么应避免出现`for in`语句，转而换为数组循环
+- 可以通过给 Number.prototype 绑定自定义方法来简化我们的工作
+- 当参数为负时向上取整，为正时向下取整
 
 ```javascript
-var box = ["book", "pencil", "30元"];
-
-for (let i = 0; i < box.length; i++) {
-  console.log(box[i]);
-}
+Number.methods('getInteger',function(){
+  return Math[this<0?'ceil':'floor'>](this);
+})
+console.log((5/3).getInteger())//1
 ```
 
 #### 删除
