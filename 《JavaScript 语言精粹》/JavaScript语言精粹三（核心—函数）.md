@@ -245,48 +245,28 @@ console.log(aHa.hasOwnProperty('getName')) //true
 console.log(aHa.hasOwnProperty('toNumber'))//false
 ```
 
-#### 删除
+#### 递归
 
-- delete 运算符可以用来删除某对象的属性，若此对象含有该属性，则移除（不会对原型链中的对象产生影响）
-- 删除某对象的属性，可能会让它原型链中的此属性表现出来
-- 若原型链 object 上有 a 属性，而对象 A 身上也有 a 属性，则 A 使用时以自身为准
-- （这也是为什么，删除 A 身上的 a 属性时，A 身上的 object 的 a 属性生效的原因）如下：
+-
+-
+-
+-
 
 ```javascript
-function Pro() {}
-Pro.prototype = {
-  constructor: Pro,
-  name: "proto",
-  sex: "boy",
-  hobby: "coding",
-};
-var fakePro = new Pro();
-fakePro.hobby = "钓鱼🎣";
-console.log(fakePro.hobby); //'钓鱼🎣'
-delete fakePro.hobby;
-console.log(fakePro.hobby); //'coding'
+
 ```
 
 #### 全局变量污染
 
-- `JavaScript`可以随意定义全局变量（当然，这在方便的同时带来很多隐患）
-- 为降低这些隐患，一般为其应用创建唯一全局变量容器
-- 把全局资源都归纳至一个名称空间下，则会显著降低命名冲突。
+-
+-
+-
 
 ```javascript
-var box = {};
-box.content = {
-  first_box: "tomato",
-  second_box: "cucumber",
-  third_box: "potato",
-};
-box.price = {
-  tomato: "25",
-  cucumber: "15",
-  potato: "10",
+
 };
 ```
 
 ---
 
-总结：本章节描述的是在`JavaScript`语言中的对象的基本概念，更加多元化的使用方法及重要知识点将在函数章节中记录。
+总结：
