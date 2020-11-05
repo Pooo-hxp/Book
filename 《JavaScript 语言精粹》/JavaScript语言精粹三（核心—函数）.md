@@ -267,15 +267,42 @@ Recursive(233); // 求233+222+...+2+1
 > 至于递归底层涉及内存的压栈和弹出，你可以通过点击<br>
 > 👉 [GitHub](https://github.com/Pooo-hxp/Book/blob/master/%E3%80%8A%E7%AE%97%E6%B3%95%E5%9B%BE%E8%A7%A3%E3%80%8B/%E7%AE%97%E6%B3%95%E5%9B%BE%E8%A7%A3%E4%BA%8C%EF%BC%88%E9%80%92%E5%BD%92%E5%8F%8A%E5%86%85%E5%AD%98%E5%AD%98%E5%82%A8%E5%8E%9F%E7%90%86%EF%BC%89.md) 查看详情 或者掘金里的 👉[递归](https://juejin.im/post/6870823876591517704)
 
-#### 全局变量污染
+#### 作用域
 
--
--
--
+- 作用域控制着参数与变量的生命周期 ，例如：
 
 ```javascript
-
+var poo = function () {
+  var a = 1,
+    b = 2;
+  var pooTx = function () {
+    var b = 3,
+      c = 4;
+    //--此时这里可读取外部值，但b被就近覆盖，所以a=1,b=3,c=4
+    a += b + c;
+    //--经过运算影响后，a=8,b=3,c=4
+    /* 补充 +优先级高于+=,所以上方相当于a+=(b+c) 或 a=a+(b+c)*/
+  };
+  //这里因在pooTx外，所以不受影响a=1,b=2[ 无法读取c ]
+  pooTX();
+  //-执行过了，因此a=8,b=2
 };
+```
+
+- 但是令人头疼的是 `JavaScript` 有着函数作用域，意味着函数中的参数变量，内部任何地方都可见。
+- （ `ES6` 中的 `let` 声明符解决了这个痛点）
+
+```javascript
+function testPar() {
+  var flag = "poo";
+  var update = (function () {
+    flag = "aHaHa";
+  })();
+  var getpar = (function () {
+    console.log(flag);
+  })();
+}
+testPar(); //被别的函数篡改了， "aHaHa"
 ```
 
 ---
