@@ -290,7 +290,7 @@ var poo = function () {
 ```
 
 - 但是令人头疼的是 `JavaScript` 有着函数作用域，意味着函数中的参数变量，内部任何地方都可见。
-- （ `ES6` 中的 `let` 声明符解决了这个痛点）
+- （ `ES6` 中的 `let` 块级作用域声明符解决了这个痛点）
 
 ```javascript
 function testPar() {
@@ -305,6 +305,24 @@ function testPar() {
 testPar(); //被别的函数篡改了， "aHaHa"
 ```
 
----
+#### 闭包
+
+- 作用域的好处是，可以使父级函数内部的子级函数访问父级函数里的参数和变量
+- 有趣的是，内部函数往往拥有着比它外部函数更长的生命周期。
+
+```javascript
+var myObj = function () {
+  var val = 1;
+  return {
+    increment: function (par) {
+      val += typeof par === "number" ? par : 2;
+    },
+    getval: function () {
+      return val;
+    },
+  };
+};
+myObj();
+```
 
 总结：
