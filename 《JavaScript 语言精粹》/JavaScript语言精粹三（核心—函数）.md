@@ -361,4 +361,24 @@ for (var i = 1; i <= 5; i++) {
 
 #### 模块
 
-    总结：
+- 模块：是提供接口缺隐藏状态与函数的对象（函数）-使用闭包和函数来进行构造
+- 通过使用函数产生模块，可以大幅度减少全局变量的使用
+- 比如说给 `String` 添加一个自定义的 `pooMethods`方法，功能：
+  - 检测到字符串中的 `HTML` 字符并转换为对应汉字
+
+```JavaScript
+var transform={
+  >:'大于',
+  <:'小于',
+  =:'等于'
+}
+return function(){
+  return this.replace(/#([^#;]+);/g,
+  function(a,b){
+    var r=transform[b];
+    return typeof r==='String'?r:a;
+  })
+}
+```
+
+总结：
