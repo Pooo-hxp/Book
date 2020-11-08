@@ -396,6 +396,27 @@ console.log('123#<;213'.pooMethods())//123小于213
 
 ```javascript
 /**根据书中的示例创建*/
+var serial_maker = function () {
+  var prefix = "";
+  var seq = 0;
+  return {
+    ser_pre: function (p) {
+      prefix = String(p);
+    },
+    ser_seq: function (s) {
+      seq = s;
+    },
+    gensym: function () {
+      var result = prefix + seq;
+      seq += 1;
+      return result;
+    };
+  };
+};
+var seqer=serial_maker();
+seqer.ser_pre('p');
+seqer.set_seq('oo');
+var unique=seqer.gensym();//
 ```
 
     总结：
