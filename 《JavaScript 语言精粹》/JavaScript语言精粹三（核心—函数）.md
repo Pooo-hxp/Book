@@ -367,18 +367,35 @@ for (var i = 1; i <= 5; i++) {
   - 检测到字符串中的 `HTML` 字符并转换为对应汉字
 
 ```JavaScript
+String.method('pooMethods',function(){
 var transform={
-  >:'大于',
-  <:'小于',
-  =:'等于'
+  '>':'大于',
+  '<':'小于',
+  '=':'等于'
 }
 return function(){
+  //‘#’开头和‘;’结尾内字符进行替换
   return this.replace(/#([^#;]+);/g,
   function(a,b){
     var r=transform[b];
     return typeof r==='String'?r:a;
   })
 }
+}());
+console.log('123#<;213'.pooMethods())//123小于213
 ```
 
-总结：
+- 模块一般是：
+  - 一个定义私有变量和函数的函数
+  - 利用闭包创建可访问私有变量和函数的**特权函数**
+  - 最后把这个函数保存到公共可访问的地方
+- 好处：
+  - 摒弃大量全局变量使用
+  - 便于应用程序的封装和构造
+  - 模块模式可以更改的来创建安全的对象
+
+```javascript
+/**根据书中的示例创建*/
+```
+
+    总结：
