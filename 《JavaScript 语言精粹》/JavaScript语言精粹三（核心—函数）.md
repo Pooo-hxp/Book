@@ -400,23 +400,33 @@ var serial_maker = function () {
   var prefix = "";
   var seq = 0;
   return {
-    ser_pre: function (p) {
+    set_pre: function (p) {
       prefix = String(p);
     },
-    ser_seq: function (s) {
+    set_seq: function (s) {
       seq = s;
     },
     gensym: function () {
       var result = prefix + seq;
       seq += 1;
       return result;
-    };
+    },
   };
 };
-var seqer=serial_maker();
-seqer.ser_pre('p');
-seqer.set_seq('oo');
-var unique=seqer.gensym();//
+var seqer = serial_maker();
+seqer.set_pre("poo");
+seqer.set_seq("12345");
+var unique = seqer.gensym(); // 'poo12345'
 ```
 
-    总结：
+- 如上方示例用来产生一个无法影响内部 `prefix` 和 `seq` 安全的序列号
+
+#### 柯里化
+
+- 函数同样是值，柯里化允许函数和传递给函数的参数结合，产生新函数
+
+```typescript
+function sum() {}
+var add1 = add.curry(1);
+console.log(add1(6));
+```
