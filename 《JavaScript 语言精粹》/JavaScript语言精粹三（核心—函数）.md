@@ -423,13 +423,38 @@ var unique = seqer.gensym(); // 'poo12345'
 
 #### 柯里化
 
+> 柯里化(Currying)指的是将原来接受两个参数的函数变成新的接受一个参数的函数的过程。新的函数返回一个以原有第二个参数为参数的函数。
+
 - 柯里化的作用：是函数式编程的一个重要概念。它既能减少代码冗余，也能增加可读性。
 - 柯里化的定义：在数学和计算机科学中，柯里化是一种将使用多个参数的一个函数转换成一系列使用一个参数的函数的技术
 - 简单应用如下：
 
 ```typescript
-function sum(x, y, z) {
-  console.log(x + y + z);
+/**
+ * 解析：
+ *  若函数以cc(xxx)(yyy)形式可以调用
+ *  则sum(xxx)的返回值必然为一个函数，因为后方还要以(yyy)调用
+ *  实现一个add方法，使计算结果能够满足如下预期：
+ *  add(1)(2)(3) = 6;
+ *  add(1, 2, 3)(4) = 10;
+ *  add(1)(2)(3)(4)(5) = 15;
+ */
+function add() {
+  // 第一次执行时，定义一个数组专门用来存储所有的参数
+  var _args = Array.prototype.slice.call(arguments);
+  // 在内部声明一个函数，利用闭包的特性保存_args并收集所有的参数值
+  var _adder = function () {
+    _args.push(...arguments);
+    return _adder;
+  };
+  // 利用toString隐式转换的特性，当最后执行时隐式转换，并计算最终的值返回
+  _adder.toString = function () {
+    return _args.reduce(function (a, b) {
+      return a + b;
+    });
+  };
+  return _adder;
 }
-/*sum(1, 2, 3)或者sum(1,2)(3)或sum(1)(2,3)*/
+multi(1, 3, 5); //9
+multi(1, 3)(5); //9
 ```
