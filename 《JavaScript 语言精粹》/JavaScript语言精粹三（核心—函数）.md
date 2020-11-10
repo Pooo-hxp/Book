@@ -478,9 +478,27 @@ function fbnq(flag) {
   return fn(flag);
 }
 console.log("斐波那契数列中第六项为", fbnq(6));
-// 这种方法比较更容易理解
+// ---这种方法比较更容易理解
 function fb(n) {
   return n - 2 > 0 ? fb(n - 2) + fb(n - 1) : 1;
 }
 console.log("斐波那契数列中第六项为", fb(6));
+//---输出一个指定长度的斐波那契数列
+function arrs(num) {
+  let arr = [];
+  if (num - 2 > 0) {
+    arr[0] = 1;
+    arr[1] = 1;
+    for (let i = 1; i <= num - 2; i++) {
+      arr.push(arr[i - 1] + arr[i]);
+    }
+  } else {
+    while (num > 0) {
+      arr.push(1);
+      num--;
+    }
+  }
+  console.log(arr);
+}
+arrs(14);
 ```
