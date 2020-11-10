@@ -440,7 +440,7 @@ var unique = seqer.gensym(); // 'poo12345'
  *  add(1)(2)(3)(4)(5) = 15;
  */
 function add() {
-  // 第一次执行时，定义一个数组专门用来存储所有的参数
+  // arguments类数组对象转化为数组对象备份
   var _args = Array.prototype.slice.call(arguments);
   // 在内部声明一个函数，利用闭包的特性保存_args并收集所有的参数值
   var _adder = function () {
@@ -457,4 +457,30 @@ function add() {
 }
 multi(1, 3, 5); //9
 multi(1, 3)(5); //9
+```
+
+#### 记忆
+
+- 函数可将之前操作的结果记录在某对象中，从而避免无谓的重复运算（记忆）
+- 这是一种很棒的优化方式，`JavaScript` 的对象和数组实现很简单
+
+```javascript
+/**
+ * flag 为想查询数列中第几项
+ * curr为一项 next为二项 二者相加为第三项
+ * 这是比较简便的方法
+ */
+function fbnq(flag) {
+  function fn(flag, curr = 1, next = 1) {
+    if (flag == 1) return curr;
+    else return fn(flag - 1, next, curr + next);
+  }
+  return fn(flag);
+}
+console.log("斐波那契数列中第六项为", fbnq(6));
+// 这种方法比较更容易理解
+function fb(n) {
+  return n - 2 > 0 ? fb(n - 2) + fb(n - 1) : 1;
+}
+console.log("斐波那契数列中第六项为", fb(6));
 ```
