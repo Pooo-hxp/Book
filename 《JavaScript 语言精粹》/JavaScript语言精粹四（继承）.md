@@ -31,80 +31,83 @@
 
 - 定义一个构造器，并扩充它的原型
 
-```JavaScript
-var Man = function (name) {
-  this.name = name;
-};
-Man.prototype.getName = function () {
-  return this.name;
-};
-Man.prototype.says = function () {
-  return this.saying || "";
-};
-```
+  ```JavaScript
+  var Man = function (name) {
+    this.name = name;
+  };
+  Man.prototype.getName = function () {
+    return this.name;
+  };
+  Man.prototype.says = function () {
+    return this.saying || "";
+  };
+  ```
 
 - 构造实例
 
-```JavaScript
-var myName=new Man('poo');
-var name=myName.getName();
-console.log(name);// poo
-```
+  ```JavaScript
+  var myName=new Man('poo');
+  var name=myName.getName();
+  console.log(name);// poo
+  ```
 
 - 还可以构造另一个伪类继承 Man,
 
-```JavaScript
-var Dog=function(name){
-  this.name=name;
-  this.saying='aHa';
-}
-Dog.prototype=new Man();//替换它的prototype
-Dog.prototype.wangwang=function(n){
-  var i,txt='';
-  for(i=0;i<n;i++){
-    s=s?s+='~':'汪'
+  ```JavaScript
+  var Dog=function(name){
+    this.name=name;
+    this.saying='aHa';
   }
-  return txt;
-}
-var yourDog=new Dog('花花')
-var says=yourDog.says();
-var wangwang=yourDog.wangwang(3);
-```
+  Dog.prototype=new Man();//替换它的prototype
+  Dog.prototype.wangwang=function(n){
+    var i,txt='';
+    for(i=0;i<n;i++){
+      s=s?s+='~':'汪'
+    }
+    return txt;
+  }
+  var yourDog=new Dog('花花')
+  var says=yourDog.says();// aHa
+  var wangwang=yourDog.wangwang(3);//汪~~
+  ```
 
-### 函数字面量
+- 使用构造器有一个严重的危害，调用构造器函数时，若没在前面加上 `new`,则**this 不会绑定到新对象上**，反而绑定到了全局，破坏了全局变量环境
+- 为了降低这个风险，构造器函数约定俗成首字母大写。
 
-- 函数对象可通过函数字面量来创建，比如：
+###
+
+-
 
 ```javascript
 
 ```
 
 - 函数字面量分为四个部分
-  - 第 1 部分是保留字`function`
-  - 第 2 部分是函数名（可省略--匿名函数），函数可通过函数名递归调用自身
-  - 第 3 部分是在调用（圆括号）中的一组参数，多个以逗号分隔。这些参数称之为函数中的变量
-  - 第 4 部分是在执行（大括号）中的一组语句，它们是函数的主题，在函数调用时依次执行
+  - 第
+  - 第
+  - 第
+  - 第在函数调用时依次执行
 
 注：函数字面量可出现在任何允许表达式执行的地方，函数可以定义在另一个函数中，并且**函数除了可以访问自身的参数和变量外，还可以自由访问把它嵌套在自身函数体的父函数中的参数和变量**这称之为**闭包**。
 
 - 书中未举例，为便于理解我编写一个简单闭包函数：
 
-```javascript
-/**
- * JS的特点就是函数内容可以读取全局/父级里变量
- * 函数外部无法读取函数内部定义的变量（内部声明要加let或var，否则默认声明的是全局变量）
- * 下方parent中的所有变量都是对getname可见的，反之则不成立
- */
-function parent() {
-  var name = "poo";
-  function getname() {
-    return name;
+  ```javascript
+  /**
+   * JS的特点就是函数内容可以读取全局/父级里变量
+   * 函数外部无法读取函数内部定义的变量（内部声明要加let或var，否则默认声明的是全局变量）
+   * 下方parent中的所有变量都是对getname可见的，反之则不成立
+   */
+  function parent() {
+    var name = "poo";
+    function getname() {
+      return name;
+    }
+    return getname;
   }
-  return getname;
-}
-var Aha = parent();
-Aha(); //'poo'
-```
+  var Aha = parent();
+  Aha(); //'poo'
+  ```
 
 #### 函数的调用
 
