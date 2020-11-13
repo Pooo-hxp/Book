@@ -26,22 +26,21 @@
   ```
 
   - 新对象被赋予 `prototype` 属性，（值是包含`constructor`属性，且属性值为该新函数的对象）
+  - `prototype` 用以存放继承特征`javascript` 中每个函数都包含 `prototype` 属性
+  - 当采用构造器调用模式时，（使用 `new`调用），函数的执行方式会改变
 
-  -
-
-- -
+- 定义一个构造器，并扩充它的原型
 
 ```javascript
-/**
- *  Foo() 构造函数
- * Foo.prototype 是构造函数Foo的原型/ 是poo的原型对象
- * poo.__prototype__ 也是指向原型对象
- */
-function Foo() {} //构造函数
-var poo = new Foo(); //实例化一个对象
-console.log(poo.__proto__ === Foo.prototype); //true ,说明是指向同一个原型对象
-console.log(poo.__proto__.constructor); //Foo()
-console.log(Foo.prototype.constructor); //Foo()
+var Man = function (name) {
+  this.name = name;
+};
+Man.prototype.getName = function () {
+  return this.name;
+};
+Man.prototype.says = function () {
+  return this.saying || "";
+};
 ```
 
 ### 函数字面量
@@ -49,9 +48,7 @@ console.log(Foo.prototype.constructor); //Foo()
 - 函数对象可通过函数字面量来创建，比如：
 
 ```javascript
-var add = function (par1, par2) {
-  return par1 + par2;
-};
+
 ```
 
 - 函数字面量分为四个部分
