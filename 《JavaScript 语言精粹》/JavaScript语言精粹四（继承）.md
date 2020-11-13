@@ -31,7 +31,7 @@
 
 - 定义一个构造器，并扩充它的原型
 
-```javascript
+```JavaScript
 var Man = function (name) {
   this.name = name;
 };
@@ -41,6 +41,34 @@ Man.prototype.getName = function () {
 Man.prototype.says = function () {
   return this.saying || "";
 };
+```
+
+- 构造实例
+
+```JavaScript
+var myName=new Man('poo');
+var name=myName.getName();
+console.log(name);// poo
+```
+
+- 还可以构造另一个伪类继承 Man,
+
+```JavaScript
+var Dog=function(name){
+  this.name=name;
+  this.saying='aHa';
+}
+Dog.prototype=new Man();//替换它的prototype
+Dog.prototype.wangwang=function(n){
+  var i,txt='';
+  for(i=0;i<n;i++){
+    s=s?s+='~':'汪'
+  }
+  return txt;
+}
+var yourDog=new Dog('花花')
+var says=yourDog.says();
+var wangwang=yourDog.wangwang(3);
 ```
 
 ### 函数字面量
