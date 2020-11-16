@@ -97,7 +97,7 @@ var myObj=maker({
 - 例如，使用对象字面量构造一个对象
 
 ```javascript
-var myMan = {
+var man = {
   name: "poo",
   getName: function () {
     return this.name;
@@ -108,6 +108,18 @@ var myMan = {
 };
 ```
 
+- 再利用`Object.create`方法构造出其他实例
+
+```javascript
+var myFriends = Object.create(man);
+myFriends.name = "tomato";
+myFriends.says = "Hi~  potato";
+myFriends.getName = function () {
+  return this.name + " " + this.says;
+};
+```
+
+- 通过定制新对象，来指定与基于的基本对象区别的方式，叫做差异化继承。
 - 拥有这个对象后，
 - 函数字面量分为四个部分
   - 第
