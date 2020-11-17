@@ -150,35 +150,24 @@ var constructor=function(spec,my){
 - 调用一个函数
   - 方法
 - 调用
-- 实参与形参个数不匹配时不会出错，会忽略超出的参数值，会替换缺少的值为`undefined`。
+- 。
 
-#### 方法调用模式
+####
 
-- 当一个函数被保存为对象的某一属性时，称它为一个方法，当该方法被调用时，this 就绑定到了该对象，若调用表达式包含 `.` 或者 `[ ]` 时，它被当做一个方法调用。
+-
 - 例如：
 
 ```javascript
-var myObj = {
-  val: 233,
-  getVal: function (par) {
-    this.val += typeof par === "number" ? par : 1;
-  },
-};
-myObj.getVal();
-console.log(myObj.val); //234
-/*-------------------*/
-myObj.getVal(433);
-console.log(myObj.val); //666
+var myObj = {};
 ```
 
-- 对象身上的方法可以通过 this 访问该对象身上的属性，因此也能进行取值和修改。
-- 通过 this 取得它所属对象的上下文的方法，称之为公共方法。
+- 对象身
+- 通过
 
-#### 构造器调用模式
+#### 构造器
 
-- `JavaScript`是基于原型继承的语言，对象可直接从其他对象继承属性
-- 如果在一个函数前面加上 `new` 关键字调用，那么底层是会创建一个连接到该函数 `prototype` 成员的新对象，同时绑定 `this` 至新对象
-- 例如：
+- `JavaScript`
+- 如果在一
 
 ```JavaScript
 var Poo=function(city){
@@ -187,12 +176,10 @@ var Poo=function(city){
 Poo.prototype.getCity=function(){
   return this.citys;
 }
-var goWhere=new Poo('ZhengZhou');
-console.log(goWhere.getCity());// ZhengZhou
 ```
 
-- 函数若通常使用 `new` 来结合调用，那么它就被称之为构造器函数
-- 约定俗成，这类函数要首字母大写用以区分
+- 函数若通常
+- 约定俗成
 
 #### Apply 调用模式
 
