@@ -142,14 +142,62 @@ var constructor=function(spec,my){
   //添加给that的特权方法
   return that;
 }
-
 ```
 
-#### 函数的调用
+> spec 对象包含构造器需要构造一个新实例的所有信息。spec 的内容可能会被复制到私有变量，或被其他函数改变，或方法在需要的时候可以访问 spec。
 
-- 调用一个函数
-  - 方法
-- 调用
+- `my`对象是一个为继承链中的构造器所提供私密共享的容器，`my` 对象可以选择性使用，若 `my` 为空，则创建一个` my` 对象（ `my=my||{ }` ）
+- 然后声明该对象私有的实例变量和方法，构造器的变量和内部函数都变成该实例的私有成员，内部函数可访问`spec my that`及其他变量。
+- 然后通过赋值语句，给`my`添加共享私有成员
+
+```
+ my.member=value
+```
+
+- 然后构造新对象，将其赋值给`that`,再进行扩充,后边我就迷糊了，还没看懂。
+
+#### 部件
+
+- 可以利用一套部件把对象组装出来，比如构造一个给对象添加时间处理的函数
+- 给对象添加`on` 方法，`fire`方法和私有事件注册表对象
+
+```javascript
+var eventuality = function (that) {
+  var registry = {};
+  that.fire = function (event) {
+    var array,
+      func,
+      handler,
+      type = typeof event === "string" ? event : event.type;
+    if (registry.hasOwnProperty(type)) {
+      array = registry[type];
+      for (let i = 0; i < array.length; i++) {
+        handler = array[i];
+        func = handler.method;
+        if (typeof func === "string") {
+          func = this[func];
+        }
+        func.apply(this, handler.parameters || [event]);
+      }
+    }
+    return this;
+  };
+  that.on = function (type, method, parameters) {
+    var handler = {
+      method: method,
+      parameters: parameters,
+    };
+    if (registry.hasOwnProperty(type)) {
+      registry[type].push(handler);
+    } else {
+      registry[type] = [handler];
+    }
+    return this;
+  };
+  return that;
+};
+```
+
 - 。
 
 ####
