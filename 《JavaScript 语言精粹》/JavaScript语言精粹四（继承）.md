@@ -164,24 +164,36 @@ var constructor=function(spec,my){
 ```javascript
 var eventuality = function (that) {
   var registry = {};
+  /**
+   * 在一个对象上触发一个事件
+   * 可以是一个含事件名称的字符串
+   * 或是一个 包含事件名的type属性的 对象
+   * 通过 on 方法注册的事件处理程序中匹配事件名称的函数会被调用
+   */
   that.fire = function (event) {
     var array,
       func,
       handler,
       type = typeof event === "string" ? event : event.type;
+    //若该事件存在一组事件，则遍历且顺序执行
     if (registry.hasOwnProperty(type)) {
       array = registry[type];
       for (let i = 0; i < array.length; i++) {
         handler = array[i];
+        //每个处理程序中包括一个方法和一组可选参数
+        //若该方法是字符串形式的，则找到该函数
         func = handler.method;
         if (typeof func === "string") {
           func = this[func];
         }
+        //调用此处理程序，若该条包括参数，则传递，否则传递该对象
         func.apply(this, handler.parameters || [event]);
       }
     }
     return this;
   };
+  //注册一个事件，构造一条处理程序条目，将其插入处理程序数组
+  //若此类型事件不存在则构造
   that.on = function (type, method, parameters) {
     var handler = {
       method: method,
@@ -198,6 +210,12 @@ var eventuality = function (that) {
 };
 ```
 
+- 可在任何单独对象上调用`eventuality`,授予其事件处理方法，也可在`that`返回前在构造器函数中调用它。
+
+```js
+eventuality(that);
+```
+
 - 。
 
 ####
@@ -205,84 +223,10 @@ var eventuality = function (that) {
 -
 - 例如：
 
-```javascript
-var myObj = {};
-```
-
-- 对象身
-- 通过
-
-#### 构造器
-
-- `JavaScript`
-- 如果在一
-
-```JavaScript
-var Poo=function(city){
-  this.citys=city;
-}
-Poo.prototype.getCity=function(){
-  return this.citys;
-}
-```
-
-- 函数若通常
-- 约定俗成
-
 #### Apply 调用模式
 
 - `apply` 方法可以构建一个参数数组传递给调用函数，并且可自由选择 `this` 的指向
 - `apply` 中通常第一个参数为 `this` 绑定的值，第二个为参数数组
-
-```JavaScript
-
-
-var add = function (par1, par2) {
-  return par1 + par2;
-};
-var arrs=[1,2];
-var count=add.apply(null,arrs) //3
-//-构造一个包含type成员的对象,types并没有getRtx方法，但通过apply，仍可使用
-var Poo=function(city){
-  this.type=type;
-}
-Poo.prototype.getRtx=function(){
-  return this.type;
-}
-var types={
-  type:'RTX3080'
-}
-var getRtx=Poo.prototype.getRtx.apply(types);//RTX3080
-```
-
-#### 参数
-
-- 当函数被调用时，都会拥有一个 `arguments`数组，它里面包含了所有被调用时，传递给它的参数
-
-```javascript
-var count = function () {
-  var i = 0;
-  sum = 0;
-  for (i; i < arguments.length; i++) {
-    sum += arguments[i];
-  }
-  return sum;
-};
-console.log(count(1, 3, 4, 6, 7, 12)); //33
-```
-
-- 因为设计上的失误，导致 `arguments` 并不是一个真正的数组，而是一个类数组对象`（array-like）`
-- `arguments`是一个拥有 length 属性的特殊对象，但它不具备任何数组方法
-  - 数组对象的类型是 `Array`， `arguments`的类型是 Object；
-  - `arguments` 不能直接调用数组 `API`（不具备任何数组方法）；
-  - 数组遍历可以用 for in 和 for 循环，`arguments` 只能用 for 循环遍历；
-
-```javascript
-//把函数中的arguments转为数组
-var newArr = Array.prototype.slice.call(arguments);
-console.log(Array.isArray(arguments)); //false
-console.log(Array.isArray(newArr)); //true
-```
 
 #### 返回
 
