@@ -4,31 +4,48 @@
 
 ## 起步：
 
-- `JavaScript` 中极具特色的设计就是其函数的实现了
-- 函数：即一组语句，它们是 JS 的基础模块单元，用于代码复用，信息隐藏和组合调用。
-- 编程：什么为编程？即把一组需求分解成一组函数和数据结构的技能。
+### 数组是一段线性分配的内存，通过整数计算偏移，并访问其中的元素，数组是一种性能出色的数据结构。
+
+> 数组性能优越在读取时间为 O(1)，**数组和链表 👉[点击](https://juejin.cn/post/6869210557807853575)**
+
+- `JavaScript` 中提供了一些类数组特性的对象（`array-like`）。
+- 调用：它把数组下标改为字符串，用其作为属性。
+- 速度：它明显比数组慢，但它的优点是使用起来更方便。
+- 检索和更新：它的方式和对象一模一样，不过多个可以用整数作为属性名的特性。
   ***
 
-### 函数对象
+### 数组字面量
 
-- `javascript`中的函数就是对象，对象是‘键值对’的集合，并且隐形的连接到原型对象
-  - 对象字面量产生的对象连接到 Object.prototype
-  - 函数对象连接到 Function.prototype（此原型对象本身连接到 Object.prototype）
-- 函数对象在创建时，都配有一个**prototype** 属性`[Foo.prototype]`，它的值是一个拥有**constructor**属性，且属性值为该函数的对象`[Foo.prototype.constructor==Foo]`
-  - 书中的这句话有些拗口且不容易理解，所以我觉得用代码会直观一些
+- 字面量方式提供了非常简单的创建新数组的表示法
+  - 概念：数组字面量是方括号包括空或多个以逗号分隔的值得表达式
+  - 使用：可以在任何允许表达式的地方出现
+  - 潜规则：数组首值属性名为‘0’，后边以此类推
+- 例如：
 
 ```javascript
-/**
- *  Foo() 构造函数
- * Foo.prototype 是构造函数Foo的原型/ 是poo的原型对象
- * poo.__prototype__ 也是指向原型对象
- */
-function Foo() {} //构造函数
-var poo = new Foo(); //实例化一个对象
-console.log(poo.__proto__ === Foo.prototype); //true ,说明是指向同一个原型对象
-console.log(poo.__proto__.constructor); //Foo()
-console.log(Foo.prototype.constructor); //Foo()
+var container = [];
+var nums = ["zero", "one", "two", "three"];
+if (true) {
+  container[1]; // undefined
+  nums[1]; // one
+  container.length; // 0
+  nums.length; //4
+}
+//-对象字面量
+var nums_object = {
+  0: "zero",
+  1: "one",
+  2: "two",
+  3: "three",
+};
 ```
+
+- 两者产生的结果几乎相同
+  - 相似点
+    - `nums` 和 `nums_object` 都包含相同对象
+    - 它们的属性刚好名字和值也都相同
+  - 区别，掌握原型链的知道
+    - **nums** 继承自 `Array.prototype`，**nums_object** 继承自 `Object.prototype`
 
 ### 函数字面量
 
