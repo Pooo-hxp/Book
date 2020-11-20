@@ -111,30 +111,22 @@ arrs; // ["番茄", "黄瓜", "茄子"]
     }
 ```
 
-- 对象身上的方法可以通过 this 访问该对象身上的属性，因此也能进行取值和修改。
-- 通过 this 取得它所属对象的上下文的方法，称之为公共方法。
+#### 容易混淆的地方
 
-#### 构造器调用模式
-
-- `JavaScript`是基于原型继承的语言，对象可直接从其他对象继承属性
-- 如果在一个函数前面加上 `new` 关键字调用，那么底层是会创建一个连接到该函数 `prototype` 成员的新对象，同时绑定 `this` 至新对象
-- 例如：
+- `JavaScript` 中，很容易出现必须使用数组时而使用了对象或者相反的情况
+  - 属性名小而连续且为整数时，应该使用数组，否则使用对象
+- 因为语言的关系，在 `javascript` 中使用 `typeof` 运算符检测数组没有任何意义
+- 那么用于区分数组和对象，通常可利用 `constructor` 自定义函数的方式来解决
+  - `constructor` 用来执行当前对象的构造函数
+  - 也可以不编写函数，直接调用 `Array.isArray` 方法判定
 
 ```JavaScript
-var Poo=function(city){
-  this.citys=city;
+function isArray(obj) {
+    return obj && typeof(obj) === 'object' && obj.constructor === Array
 }
-Poo.prototype.getCity=function(){
-  return this.citys;
-}
-var goWhere=new Poo('ZhengZhou');
-console.log(goWhere.getCity());// ZhengZhou
 ```
 
-- 函数若通常使用 `new` 来结合调用，那么它就被称之为构造器函数
-- 约定俗成，这类函数要首字母大写用以区分
-
-#### Apply 调用模式
+#### 方法
 
 - `apply` 方法可以构建一个参数数组传递给调用函数，并且可自由选择 `this` 的指向
 - `apply` 中通常第一个参数为 `this` 绑定的值，第二个为参数数组
@@ -142,22 +134,7 @@ console.log(goWhere.getCity());// ZhengZhou
 ```JavaScript
 
 
-var add = function (par1, par2) {
-  return par1 + par2;
-};
-var arrs=[1,2];
-var count=add.apply(null,arrs) //3
-//-构造一个包含type成员的对象,types并没有getRtx方法，但通过apply，仍可使用
-var Poo=function(city){
-  this.type=type;
-}
-Poo.prototype.getRtx=function(){
-  return this.type;
-}
-var types={
-  type:'RTX3080'
-}
-var getRtx=Poo.prototype.getRtx.apply(types);//RTX3080
+
 ```
 
 #### 参数
