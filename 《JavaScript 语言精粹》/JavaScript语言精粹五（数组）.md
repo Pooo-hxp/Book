@@ -46,25 +46,33 @@ var nums_object = {
     - 它们的属性刚好名字和值也都相同
   - 区别，掌握原型链的知道
     - **nums** 继承自 `Array.prototype`，**nums_object** 继承自 `Object.prototype`
-
-### 函数字面量
-
-- 函数对象可通过函数字面量来创建，比如：
+    - **nums** 特有一个`length` 属性，而 **nums_object** 没有
+  - 特点 - 多数语言中同一个数组要求所有元素为相同类型 - `JavaScript` 中允许混合任意你需要的类型值
+    > 比如：
 
 ```javascript
-var add = function (par1, par2) {
-  return par1 + par2;
-};
+  var YaHu=[
+    'poo',233,false,null,undefined,['compose1','compose2']
+    {object:true}
+  ]
 ```
 
-- 函数字面量分为四个部分
-  - 第 1 部分是保留字`function`
-  - 第 2 部分是函数名（可省略--匿名函数），函数可通过函数名递归调用自身
-  - 第 3 部分是在调用（圆括号）中的一组参数，多个以逗号分隔。这些参数称之为函数中的变量
-  - 第 4 部分是在执行（大括号）中的一组语句，它们是函数的主题，在函数调用时依次执行
+### 长度
 
-注：函数字面量可出现在任何允许表达式执行的地方，函数可以定义在另一个函数中，并且**函数除了可以访问自身的参数和变量外，还可以自由访问把它嵌套在自身函数体的父函数中的参数和变量**这称之为**闭包**。
+- 数组虽然都有一个 `length` 属性，但在 `JavaScript`中，它的长度是没有限制的。
+- 以大于当前数组长度的数字下标存储元素，那么它会自动扩充
+- 补充：**语言的区别导致对数组的限制不同 👉[点击](https://juejin.cn/post/6869210557807853575)**
 
+- 常识：
+  - 在 `JavaScript` 中，`length` 属性与当前数组属性个数无关
+  - 它的值等于当前数组最大整数属性名+1
+  - 设置比数组属性个数大的 `length` 值不会给数组分配更多内存空间
+  - 设置比数组属性个数小的则会删除所有下标大于等于 `length` 的属性
+
+![](https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/41e09f9fe4a3443a88edec8f6f00f553~tplv-k3u1fbpfcp-watermark.image)
+
+- 当然也可以利用数组从 `Array.prototype` 中继承来的方法来进行数组一系列操作
+  - 使用频率较高的方法 **👉[点击](https://www.xipengheng.cn/?cat=24)**
 - 书中未举例，为便于理解我编写一个简单闭包函数：
 
 ```javascript
