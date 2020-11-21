@@ -168,7 +168,7 @@ let newArr = arr1.concat(arr2, "flag");
 // [ 'first', 'second', 'zero', 'one', 'flag' ]
 ```
 
-- `array.join (separator)`
+- `array.join(separator)`
   - `join` 方法把一个 `array` 构造成字符串
     - 它先把 `array` 中每个元素构造成字符串
     - 然后使用 `separator` 分隔符进行拼接，默认 `separator`是逗号
@@ -181,7 +181,7 @@ let newArr = arr1.join(); // first,second
 let newArr2 = arr2.join(""); // zeroone
 ```
 
-- `array.push (item...)`
+- `array.push(item...)`
   - `push` 方法把一个或多个 `item` 附加到一个数组的尾部
   - （ **与 `concat`方法不同的是，会改变原数组** ）
     - 若参数是数组，则把数组整个添加到原数组中（非逐个），并返回 `array` 的新长度值
@@ -198,7 +198,7 @@ arr1; //[ 'first', 'second', [ 'cherry', 'watermelon' ] ]
 newArr2; // --3
 ```
 
-- `array.reverse ()`
+- `array.reverse()`
   - `reverse` 方法会反转 `array`中的元素顺序，并返回它本身；
 
 ```javascript
@@ -207,11 +207,49 @@ let revArr = arr.reverse();
 console.log(revArr); // [ 'third', 'second', 'first' ]
 ```
 
+- `array.shift()`
+  - `shift` 方法会移除数组中第一个元素，并返回该元素；
+  - 若数组为空，则此方法返回 `undefined`
+  - （通常情况下，`shift` 比 `pop` 要慢得多）
+
+```javascript
+let arr = ["first", "second", "third"];
+let revArr = arr.shift();
+console.log(revArr); // first
+/* 这种方法可以这样手动实现*/
+Array.prototype.fakeShift = function () {
+  return this.splice(0, 1)[0];
+};
+var revArr2 = arr.fakeShift();
+console.log(revArr2); // second
+```
+
+- `array.slice(star,end)`
+  - `slice` 方法会数组中指定的一段进行浅复制；
+  - 若数组为空，则此方法返回 `undefined`
+  - （通常情况下，`shift` 比 `pop` 要慢得多）
+
+```javascript
+let arr = ["first", "second", "third"];
+let revArr = arr.shift();
+console.log(revArr); // first
+/* 这种方法可以这样手动实现*/
+Array.prototype.fakeShift = function () {
+  return this.splice(0, 1)[0];
+};
+var revArr2 = arr.fakeShift();
+console.log(revArr2); // second
+```
+
 ---
 
 ## 总结：
 
 > 本章节描述的是在`JavaScript`语言中的函数的一些核心知识点，但是因为本书定位是精粹系列，所以描述的较为简洁，虽然我补充了一些函数示例，但是先掌握这些知识点还是要自己多多练习。
+
+```
+
+```
 
 ```
 
