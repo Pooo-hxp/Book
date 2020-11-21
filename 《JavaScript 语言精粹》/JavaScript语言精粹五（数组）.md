@@ -181,6 +181,32 @@ let newArr = arr1.join(); // first,second
 let newArr2 = arr2.join(""); // zeroone
 ```
 
+- `array.push (item...)`
+  - `push` 方法把一个或多个 `item` 附加到一个数组的尾部
+  - （ **与 `concat`方法不同的是，会改变原数组** ）
+    - 若参数是数组，则把数组整个添加到原数组中（非逐个），并返回 `array` 的新长度值
+
+```javascript
+let arr1 = ["first", "second"];
+let arr2 = ["||"];
+let arr3 = ["cherry", "watermelon"];
+let newArr1 = arr1.push(arr2, "flag");
+arr1; // [ 'first', 'second', [ '||' ], 'flag' ]
+newArr1; // 4
+let newArr2 = arr1.push(arr3);
+arr1; //[ 'first', 'second', [ 'cherry', 'watermelon' ] ]
+newArr2; // --3
+```
+
+- `array.reverse ()`
+  - `reverse` 方法会反转 `array`中的元素顺序，并返回它本身；
+
+```javascript
+let arr = ["first", "second", "third"];
+let revArr = arr.reverse();
+console.log(revArr); // [ 'third', 'second', 'first' ]
+```
+
 ---
 
 ## 总结：
