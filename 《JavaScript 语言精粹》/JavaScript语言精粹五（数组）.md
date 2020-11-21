@@ -1,4 +1,4 @@
-> ## JavaScript 语言精粹五（数组）
+> ## JavaScript 语言精粹五（数组与方法）
 
 ##### 知人者智，自知者明。胜人者有力，自胜者强。 - 老子
 
@@ -126,7 +126,7 @@ function isArray(obj) {
 }
 ```
 
-#### 方法
+#### 数组扩充
 
 - `JavaScript` 中提供了一套数组可用的方法，这些数组存储在 Array.prototype 中。
   > 可在控制台进行查看 `dir(Array.prototype)`
@@ -149,9 +149,17 @@ let sum = (a, b) => {
 data.fakereduce(sum, 0)//13
 ```
 
-#### 指定初始值
+---
 
-- 当函数
+## 方法集
+
+##### `javascript` 包含一套小型可用于标准类型上的方法集
+
+#### Array
+
+- `array.concat(item)`
+  - `concat` 方法产生一个新数组，包含一份 `array` 的浅拷贝 （**shallow copy**）
+  - 并把后方的 `item` 附加在数组上，若 `item` 为数组，则它的元素会分别添加。
 
 ```javascript
 
