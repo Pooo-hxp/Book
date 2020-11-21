@@ -162,9 +162,23 @@ data.fakereduce(sum, 0)//13
   - 并把后方的 `item` 附加在数组上，若 `item` 为数组，则它的元素会分别添加。
 
 ```javascript
-
+let arr1 = ["first", "second"];
+let arr2 = ["zero", "one"];
+let newArr = arr1.concat(arr2, "flag");
+// [ 'first', 'second', 'zero', 'one', 'flag' ]
 ```
 
+- `array.join (separator)`
+  - `join` 方法把一个 `array` 构造成字符串
+    - 它先把 `array` 中每个元素构造成字符串
+    - 然后使用 `separator` 分隔符进行拼接，默认 `separator`是逗号
+    - 不想使用逗号可使用空格进行替换
+
+```javascript
+let arr1 = ["first", "second"];
+let arr2 = ["zero", "one"];
+let newArr = arr1.join(); // first,second
+let newArr2 = arr2.join(""); // zeroone
 ```
 
 ---
@@ -172,4 +186,7 @@ data.fakereduce(sum, 0)//13
 ## 总结：
 
 > 本章节描述的是在`JavaScript`语言中的函数的一些核心知识点，但是因为本书定位是精粹系列，所以描述的较为简洁，虽然我补充了一些函数示例，但是先掌握这些知识点还是要自己多多练习。
+
+```
+
 ```
