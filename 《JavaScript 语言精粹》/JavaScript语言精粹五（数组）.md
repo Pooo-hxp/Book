@@ -225,7 +225,7 @@ console.log(revArr2); // second
 ```
 
 - `array.slice(star,end)`
-  - `slice` 方法会数组中指定的一段进行浅复制；
+  - `slice` 方法会对数组中指定的一段进行浅复制；
     - 从 `array[star]` 复制到 `array[end]`
     - `end` 为非必须参数，默认值为当前数组的长度
     - 若两参数有任一负值，则会与数组长度相加，试图回正
@@ -239,7 +239,7 @@ let arr = ["first", "second", "third", "fourth"];
 ```
 
 - `array.sort(comparefn)`
-  - `sort` 方法会数组中的内容进行排序，但不可用于一组数字排序；
+  - `sort` 方法会对数组中的内容进行排序，但不可用于一组数字排序；
   - 因为它回默认元素是字符串进行比较，所以进行排序时往往结果都是错的。
   - 按字母顺序对数组中的元素进行排序，说得更精确点，是按照字符编码的顺序进行排序
     > **引自 ——W3school**
@@ -268,7 +268,7 @@ console.log(arr3); // [ '3', '7', '11', '14' ]
 ```
 
 - 修改后对纯数字的排序是解决了，但不适用于参数为字符串类型
-  - 那么在函数中徐考虑非纯数字的数组
+  - 那么在函数中需考虑非纯数字的数组，做以下修正
 
 ```javascript
 var arr4 = ["b", "r", 14, "a", 3, 7, 11];
@@ -278,6 +278,18 @@ arr4.sort(function (a, b) {
   return typeof a < typeof b ? -1 : 1;
 });
 console.log(arr4); // [ 3, 7, 11, 14, 'a', 'b', 'r' ]
+```
+
+- `array.splice(star,deleteCount,item..)`
+  - `splice` 方法会从数组中易出一个或多个元素，并将新的 `item` 进行替换。
+    - `star` 是指移除元素开始的位置
+    - `deleteCount` 是指移除的个数
+    - 若有额外的参数，则默认会插入到移除元素的位置
+
+```javascript
+var arr4 = ["王花花", "赵光光", "李大脚"];
+arr4.splice(1, 1, "孙漂亮");
+console.log(arr4); // [ '王花花', '孙漂亮', '李大脚' ]
 ```
 
 ---
