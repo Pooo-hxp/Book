@@ -268,7 +268,17 @@ console.log(arr3); // [ '3', '7', '11', '14' ]
 ```
 
 - 修改后对纯数字的排序是解决了，但不适用于参数为字符串类型
-  -
+  - 那么在函数中徐考虑非纯数字的数组
+
+```javascript
+var arr4 = ["b", "r", 14, "a", 3, 7, 11];
+arr4.sort(function (a, b) {
+  if (a === b) return 0;
+  if (typeof a === typeof b) return a - b ? -1 : 1;
+  return typeof a < typeof b ? -1 : 1;
+});
+console.log(arr4); // [ 3, 7, 11, 14, 'a', 'b', 'r' ]
+```
 
 ---
 
