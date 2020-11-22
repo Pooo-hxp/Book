@@ -238,6 +238,38 @@ let arr = ["first", "second", "third", "fourth"];
 // let revArr = arr.slice(-3,2); // [ 'second' ]-- -3+4=1
 ```
 
+- `array.sort(comparefn)`
+  - `sort` 方法会数组中的内容进行排序，但不可用于一组数字排序；
+  - 因为它回默认元素是字符串进行比较，所以进行排序时往往结果都是错的。
+  - 按字母顺序对数组中的元素进行排序，说得更精确点，是按照字符编码的顺序进行排序
+    > **引自 ——W3school**
+
+```javascript
+let arr1 = ["14", "3", "7", "11"];
+let arr2 = ["d", "c", "a", "x"];
+arr1.sort();
+arr2.sort();
+console.log(arr1); // [ '11', '14', '3', '7' ]
+console.log(arr2); // [ 'a', 'c', 'd', 'x' ]
+```
+
+- 补救的方法就是补增一个比较函数
+  - 若 a 小于 b，在排序后的数组中 a 应该出现在 b 之前，则返回一个小于 0 的值。
+  - 若 a 等于 b，则返回 0。
+  - 若 a 大于 b，则返回一个大于 0 的值。
+    > **引自 ——W3school**
+
+```javascript
+let arr3 = ["14", "3", "7", "11"];
+arr3.sort(function (a, b) {
+  return a - b;
+});
+console.log(arr3); // [ '3', '7', '11', '14' ]
+```
+
+- 修改后对纯数字的排序是解决了，但不适用于参数为字符串类型
+  -
+
 ---
 
 ## 总结：
