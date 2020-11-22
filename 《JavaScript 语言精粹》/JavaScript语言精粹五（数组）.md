@@ -226,19 +226,16 @@ console.log(revArr2); // second
 
 - `array.slice(star,end)`
   - `slice` 方法会数组中指定的一段进行浅复制；
-  - 若数组为空，则此方法返回 `undefined`
-  - （通常情况下，`shift` 比 `pop` 要慢得多）
+    - 从 `array[star]` 复制到 `array[end]`
+    - `end` 为非必须参数，默认值为当前数组的长度
+    - 若两参数有任一负值，则会与数组长度相加，试图回正
+    - 若 `star` 值大于数组长度，则回返回一个新的空数组
 
 ```javascript
-let arr = ["first", "second", "third"];
-let revArr = arr.shift();
-console.log(revArr); // first
-/* 这种方法可以这样手动实现*/
-Array.prototype.fakeShift = function () {
-  return this.splice(0, 1)[0];
-};
-var revArr2 = arr.fakeShift();
-console.log(revArr2); // second
+let arr = ["first", "second", "third", "fourth"];
+// let revArr = arr.slice(1,2); // [ 'second' ]
+// let revArr = arr.slice(1,-2); // [ 'second' ]-- -2+4=2
+// let revArr = arr.slice(-3,2); // [ 'second' ]-- -3+4=1
 ```
 
 ---
