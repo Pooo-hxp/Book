@@ -12,7 +12,9 @@
 
 #### number.toExponential(fractionDigits)
 
-- `toExponential` 方法是把数字类型转化为指数形字符串，可选 20 以内小数位数
+- `toExponential` 方法是把数字类型转化为**指数形**字符串
+- `fractionDigits` 可选 20 以内**小数位数**
+
 - 例如：
 
 ```javascript
@@ -23,7 +25,9 @@ console.log(trs); // 1.024e+3--->1.024*10的3次方
 
 #### number.toFixed(fractionDigits)
 
-- `toFixed` 方法是把数字类型转化为十进制数形式的字符串，可选 20 以内小数位数
+- `toFixed` 方法是把数字类型转化为**十进制形**字符串
+- `fractionDigits` 可选 20 以内**小数位数**
+
 - 例如：
 
 ```javascript
@@ -32,9 +36,10 @@ var trs = nums.toFixed(3);
 console.log(trs); //3.142
 ```
 
-#### number.toPrecision(fractionDigits)
+#### number.toPrecision(precision)
 
-- `toPrecision` 方法是把数字类型转化为十进制数形式的字符串，可选 21 以内**数字总数**
+- `toPrecision` 方法是把数字类型转化为十进制数形式的字符串
+- `precision` 可选 21 以内**数字总数**
 - 例如：
 
 ```javascript
@@ -43,96 +48,36 @@ var trs = nums.toPrecision(3);
 console.log(trs); // 3.14
 ```
 
-### 长度
+#### number.toString(radix)
 
-- 数组虽然都有一个 `length` 属性，但在 `JavaScript`中，它的长度是没有限制的。
-- 以大于当前数组长度的数字下标存储元素，那么它会自动扩充
-- 补充：**语言的区别导致对数组的限制不同 👉[点击](https://juejin.cn/post/6869210557807853575)**
-
-- 常识：
-  - 在 `JavaScript` 中，`length` 属性与当前数组属性个数无关
-  - 它的值等于当前数组最大整数属性名+1
-  - 设置比数组属性个数大的 `length` 值不会给数组分配更多内存空间
-  - 设置比数组属性个数小的则会删除所有下标大于等于 `length` 的属性
-
-![](https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/41e09f9fe4a3443a88edec8f6f00f553~tplv-k3u1fbpfcp-watermark.image)
-
-- 当然也可以利用数组从 `Array.prototype` 中继承来的方法来进行数组一系列操作
-  - 使用频率较高的方法 **👉[点击](https://www.xipengheng.cn/?cat=24)**
-
-#### 删除
-
-- `JavaScript` 中数组也属于对象，所以可以使用 `delete` 运算符移除数组中某元素
-
-```JavaScript
-  var arrs=['番茄','黄瓜','土豆','茄子']
-  delete arrs[2]
-    arrs// ["番茄", "黄瓜", empty, "茄子"]
-```
-
-- 很明显可以看出，虽然这种方法删除了指定元素，但是却留下一个空白空间
-  - 这是因为删除当前元素后方的元素会保留其原有属性不变，因此产生空挡
-- 那么可以使用更优的解法——数组方法 `splice`
-  - firstPar 指数组的序号，secondPar 指删除个数，后边再有参数指在序号后插入数组的元素
-  - 它会删除特定元素，并且会改变后方元素的属性
+- `toPrecision` 方法是把数字类型转化为字符串
+- `radix`控制基数， 可选 2-36 以内,默认为 10
+- 也可简写成 `String(number)`
+- 例如：
 
 ```javascript
-arrs.splice(2, 1); // ["土豆"]
-arrs; // ["番茄", "黄瓜", "茄子"]
+var nums = 1024,
+  nums2 = 9,
+  nums3 = 125;
+var trs = nums.toString(2);
+var trs2 = nums2.toString(2);
+var trs3 = nums2.toString(5);
+console.log(trs); // 10000000000-->1*2的10次方
+console.log(trs2); //1001
+console.log(trs3); //1000
 ```
 
-> 删除元素后边的元素之所以会变，是因为删除元素后边所有元素都要以新键值重新插入，也因此若操作量级较大的数组时，当前这种方法效率很低。
+### **Function**
 
-#### 枚举
+#### function.apply(this.Ary , argArray)
 
-- 因为`JavaScript` 中数组其实就是对象
-  - 所以 `for in`可用来遍历数组所有属性
-    - 但这种方法无法保证其顺序，故存在很大的隐患
-  - 而使用 `for` 语句可避免这些问题
-    - 经典三从句控制，1，初始循环；2，执行条件检测；3，增量运算
+- `apply` 方法是调用 `function`,传递一个会绑定到 `this` 上的对象和一个可选数组作为参数
+- `apply` 方法被用在 `apply` 调用模式`（apply invocation pattern）`
+
+- 例如：
 
 ```javascript
-    for(let i=0; i<arrs.length;i++){
-      do something--
-    }
-```
 
-#### 容易混淆的地方
-
-- `JavaScript` 中，很容易出现必须使用数组时而使用了对象或者相反的情况
-  - 属性名小而连续且为整数时，应该使用数组，否则使用对象
-- 因为语言的关系，在 `javascript` 中使用 `typeof` 运算符检测数组没有任何意义
-- 那么用于区分数组和对象，通常可利用 `constructor` 自定义函数的方式来解决
-  - `constructor` 用来执行当前对象的构造函数
-  - 也可以不编写函数，直接调用 `Array.isArray` 方法判定
-
-```JavaScript
-function isArray(obj) {
-    return obj && typeof(obj) === 'object' && obj.constructor === Array
-}
-```
-
-#### 数组扩充
-
-- `JavaScript` 中提供了一套数组可用的方法，这些数组存储在 Array.prototype 中。
-  > 可在控制台进行查看 `dir(Array.prototype)`
-- 无论是 `Object.prototype` 还是 `Array.prototype` 都是可扩充的
-- 那么我们可以给数组扩充一个方法，用于数组的计算
-
-```JavaScript
- Array.methods('reduce', function (f, value) { })
-//--书中给出是上方写法，我就以自己喜欢的方式改写了
-Array.prototype.fakereduce = function (fn, value) {
-  for (let i = 0; i < this.length; i++) {
-    value = fn(this[i], value)
-  }
-  return value;
-}
-let data = [1, 2, 4, 6];
-let sum = (a, b) => {
-  return a + b;
-}
-data.fakereduce(sum, 0)//13
 ```
 
 ---
