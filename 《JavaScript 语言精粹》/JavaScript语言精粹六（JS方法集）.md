@@ -159,6 +159,32 @@ let name = "tomato";
 var xxx = name.fakeConcat(" Plus"); // tomato Plus
 ```
 
+#### string.indexOf(searchString , position)
+
+- `indexOf` 方法用于在当前字符串中查找另一个字符串 `searchString `
+- 找到则返回匹配字符串的位置，否则返回 **-1**
+- `position` 为可选参数，可指定查找起始位置
+
+```javascript
+let str = "xipengheng";
+let pick1 = str.indexOf("eng"); // 3
+let pick2 = str.indexOf("ning"); // -1
+let pick3 = str.indexOf("eng", 4); // 7
+```
+
+#### string.lastIndexOf(searchString , position)
+
+- `lastIndexOf` 与 `indexOf`相同，不过它是倒序查找自定字符串
+- 找到则返回匹配字符串的位置，否则返回 **-1**
+- `position` 为可选参数，可指定查找起始位置
+
+```javascript
+let str = "xipengheng";
+let pick1 = str.lastIndexOf("eng"); // 7
+let pick2 = str.lastIndexOf("ning"); // -1
+let pick3 = str.lastIndexOf("eng", 4); // 3
+```
+
 ---
 
 ---
