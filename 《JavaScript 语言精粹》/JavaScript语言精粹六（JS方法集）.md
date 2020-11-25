@@ -111,50 +111,57 @@ console.log(test.hasOwnProperty("name")); // false
 console.log(test.list.name); // poo
 ```
 
+### **String**
+
+#### string.charAt(pos)
+
+- `charAt` 方法返回在 `string` 中 `pos` 位置处的字符
+- 若 `pos` 小于 0 或者不在字符串长度范围内，则返回空字符串
+- 注：`JavaScript` 无字符类型，所以此方法返回结果为字符串
+
+```javascript
+let type = "food";
+var pick = type.charAt(3); // d
+/** 实现原理 */
+String.prototype.fakeCharAt = function (pos) {
+  return this.slice(pos, pos + 1);
+};
+var ahh = "yaHoo";
+let pick = ahh.fakeCharAt(2); // H
+console.log(typeof pick); // string
+```
+
+#### string.charCodeAt(pos)
+
+- `charCodeAt` 与 `charAt` 相似，返回的是 `string` 中 `pos` 位置处的字符码位
+- 若 `pos` 小于 0 或者不在字符串长度范围内，则返回 **`NaN`**
+
+```javascript
+let type = "food";
+var pick = type.charCodeAt(3); // 100
+console.log(typeof pick); // number
+```
+
+#### string.concat(string...)
+
+- `concat` 方法用于进行字符串拼接，且构造出新字符串
+- 注：`concat` 性能和使用便捷性都不如直接使用运算符 `+` ，因此几乎不用
+
+```javascript
+let name = "iPhone ";
+let add = "Plus ";
+var pick = name.concat(add); // iPhone Plus
+/** 猜测实现原理 */
+String.prototype.fakeConcat = function (add) {
+  return this + add;
+};
+let name = "tomato";
+var xxx = name.fakeConcat(" Plus"); // tomato Plus
+```
+
 ---
 
-- `array.slice(star,end)`
-  - `slice` 方法会对数组中指定的一段进行浅复制；
-    - 从 `array[star]` 复制到 `array[end]`
-    - `end` 为非必须参数，默认值为当前数组的长度
-    - 若两参数有任一负值，则会与数组长度相加，试图回正
-    - 若 `star` 值大于数组长度，则回返回一个新的空数组
-
-```javascript
-let arr = ["first", "second", "third", "fourth"];
-// let revArr = arr.slice(1,2); // [ 'second' ]
-// let revArr = arr.slice(1,-2); // [ 'second' ]-- -2+4=2
-// let revArr = arr.slice(-3,2); // [ 'second' ]-- -3+4=1
-```
-
-- `array.sort(comparefn)`
-  - `sort` 方法会对数组中的内容进行排序，但不可用于一组数字排序；
-  - 因为它回默认元素是字符串进行比较，所以进行排序时往往结果都是错的。
-  - 按字母顺序对数组中的元素进行排序，说得更精确点，是按照字符编码的顺序进行排序
-    > **引自 ——W3school**
-
-```javascript
-let arr1 = ["14", "3", "7", "11"];
-let arr2 = ["d", "c", "a", "x"];
-arr1.sort();
-arr2.sort();
-console.log(arr1); // [ '11', '14', '3', '7' ]
-console.log(arr2); // [ 'a', 'c', 'd', 'x' ]
-```
-
-- 补救的方法就是补增一个比较函数
-  - 若 a 小于 b，在排序后的数组中 a 应该出现在 b 之前，则返回一个小于 0 的值。
-  - 若 a 等于 b，则返回 0。
-  - 若 a 大于 b，则返回一个大于 0 的值。
-    > **引自 ——W3school**
-
-```javascript
-let arr3 = ["14", "3", "7", "11"];
-arr3.sort(function (a, b) {
-  return a - b;
-});
-console.log(arr3); // [ '3', '7', '11', '14' ]
-```
+---
 
 - 修改后对纯数字的排序是解决了，但不适用于参数为字符串类型
   - 那么在函数中需考虑非纯数字的数组，做以下修正
