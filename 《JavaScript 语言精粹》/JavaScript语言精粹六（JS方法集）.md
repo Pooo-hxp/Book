@@ -72,12 +72,23 @@ console.log(trs3); //1000
 #### function.apply(this.Ary , argArray)
 
 - `apply` 方法是调用 `function`,传递一个会绑定到 `this` 上的对象和一个可选数组作为参数
-- `apply` 方法被用在 `apply` 调用模式`（apply invocation pattern）`
+- `apply` 方法被用在 `apply` 调用模式`（apply invocation pattern）`中
 
 - 例如：
 
 ```javascript
-
+Function.prototype.fakeBind = function (that) {
+  var method = this,
+    slice = Array.prototype.slice,
+    args = slice.apply(arguments, [1]);
+  return function () {
+    return method.apply(that, args.concat(slice.apply(arguments, [0])));
+  };
+};
+var test = function () {
+  return this.value;
+}.fakeBind({ value: 233 });
+console.log(test()); // 233
 ```
 
 ---
