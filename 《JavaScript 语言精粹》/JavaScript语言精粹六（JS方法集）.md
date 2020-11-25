@@ -91,80 +91,27 @@ var test = function () {
 console.log(test()); // 233
 ```
 
----
+### **Object**
 
-## 方法集
+#### object.hasOwnProperty(name)
 
-##### `javascript` 包含一套小型可用于标准类型上的方法集
-
-#### Array
-
-- `array.concat(item)`
-  - `concat` 方法产生一个新数组，包含一份 `array` 的浅拷贝 （**shallow copy**）
-  - 并把后方的 `item` 附加在数组上，若 `item` 为数组，则它的元素会分别添加。
+- `hasOwnProperty` 方法是对调用此方法的对象身上的属性进行检查
+- 若 `object` 包含一个名为 `name` 的属性，则此方法返回 **true**
+- 注：此方法只会检查当前对象，不会进行原型链上属性检查
 
 ```javascript
-let arr1 = ["first", "second"];
-let arr2 = ["zero", "one"];
-let newArr = arr1.concat(arr2, "flag");
-// [ 'first', 'second', 'zero', 'one', 'flag' ]
-```
-
-- `array.join(separator)`
-  - `join` 方法把一个 `array` 构造成字符串
-    - 它先把 `array` 中每个元素构造成字符串
-    - 然后使用 `separator` 分隔符进行拼接，默认 `separator`是逗号
-    - 不想使用逗号可使用空格进行替换
-
-```javascript
-let arr1 = ["first", "second"];
-let arr2 = ["zero", "one"];
-let newArr = arr1.join(); // first,second
-let newArr2 = arr2.join(""); // zeroone
-```
-
-- `array.push(item...)`
-  - `push` 方法把一个或多个 `item` 附加到一个数组的尾部
-  - （ **与 `concat`方法不同的是，会改变原数组** ）
-    - 若参数是数组，则把数组整个添加到原数组中（非逐个），并返回 `array` 的新长度值
-
-```javascript
-let arr1 = ["first", "second"];
-let arr2 = ["||"];
-let arr3 = ["cherry", "watermelon"];
-let newArr1 = arr1.push(arr2, "flag");
-arr1; // [ 'first', 'second', [ '||' ], 'flag' ]
-newArr1; // 4
-let newArr2 = arr1.push(arr3);
-arr1; //[ 'first', 'second', [ 'cherry', 'watermelon' ] ]
-newArr2; // --3
-```
-
-- `array.reverse()`
-  - `reverse` 方法会反转 `array`中的元素顺序，并返回它本身；
-
-```javascript
-let arr = ["first", "second", "third"];
-let revArr = arr.reverse();
-console.log(revArr); // [ 'third', 'second', 'first' ]
-```
-
-- `array.shift()`
-  - `shift` 方法会移除数组中第一个元素，并返回该元素；
-  - 若数组为空，则此方法返回 `undefined`
-  - （通常情况下，`shift` 比 `pop` 要慢得多）
-
-```javascript
-let arr = ["first", "second", "third"];
-let revArr = arr.shift();
-console.log(revArr); // first
-/* 这种方法可以这样手动实现*/
-Array.prototype.fakeShift = function () {
-  return this.splice(0, 1)[0];
+var list = {
+  name: "poo",
+  gender: "boy",
 };
-var revArr2 = arr.fakeShift();
-console.log(revArr2); // second
+Object.prototype.list = list;
+var test = new Object();
+console.log(list.hasOwnProperty("name")); // true
+console.log(test.hasOwnProperty("name")); // false
+console.log(test.list.name); // poo
 ```
+
+---
 
 - `array.slice(star,end)`
   - `slice` 方法会对数组中指定的一段进行浅复制；
