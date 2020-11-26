@@ -211,6 +211,20 @@ let newStr = str.replace(reg, "a"); // xipaheng
 let gloStr = str.replace(regGlobal, "a"); // xipaha
 ```
 
+#### string.search( regexp)
+
+- `search` 方法类似于 `indexOf` 方法，但它只接受一个正则对象
+- 找到则返回首个匹配的字符位置，否则返回 **-1**
+- 此方法会自动忽略全局标识符号 `g` ，且没有 `position` 参数
+
+```javascript
+let str = "i miss you,and you ?";
+let reg = /you/;
+let regGlobal = /you/g;
+let newStr = str.search(reg); // 7
+let gloStr = str.search(regGlobal); // 7
+```
+
 ---
 
 ---
