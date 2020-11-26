@@ -191,6 +191,26 @@ let pick3 = str.lastIndexOf("eng", 4); // 3
 - 若当前字符串小于 `that` 则为负，相等为 `0`
 - 注：这方法没啥规则，也没啥用途，没学习的必要
 
+#### string.replace(searchValue , replaceValue)
+
+- `replace` 方法会对 `searchVale` 进行查找，并且使用 `replaceVale` 替换
+- 注：只会替换首次出现的搜索词组，且返回的是一个新字符串
+
+```javascript
+let str = "xipengheng";
+let newStr = str.replace("eng", "a"); // xipaheng
+```
+
+- 此方法也可与正则组合，根据需要替换一个或多个字符
+
+```javascript
+let str = "xipengheng";
+let reg = /eng/;
+let regGlobal = /eng/g;
+let newStr = str.replace(reg, "a"); // xipaheng
+let gloStr = str.replace(regGlobal, "a"); // xipaha
+```
+
 ---
 
 ---
