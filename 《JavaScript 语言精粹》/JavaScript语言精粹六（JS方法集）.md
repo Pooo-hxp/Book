@@ -185,58 +185,15 @@ let pick2 = str.lastIndexOf("ning"); // -1
 let pick3 = str.lastIndexOf("eng", 4); // 3
 ```
 
----
+#### string.localeCompare(that)
+
+- `localeCompare` 方法是比较两个字符串
+- 若当前字符串小于 `that` 则为负，相等为 `0`
+- 注：这方法没啥规则，也没啥用途，没学习的必要
 
 ---
 
-- 修改后对纯数字的排序是解决了，但不适用于参数为字符串类型
-  - 那么在函数中需考虑非纯数字的数组，做以下修正
-
-```javascript
-var arr4 = ["b", "r", 14, "a", 3, 7, 11];
-arr4.sort(function (a, b) {
-  if (a === b) return 0;
-  if (typeof a === typeof b) return a - b ? -1 : 1;
-  return typeof a < typeof b ? -1 : 1;
-});
-console.log(arr4); // [ 3, 7, 11, 14, 'a', 'b', 'r' ]
-```
-
-- `array.splice(star,deleteCount,item..)`
-  - `splice` 方法会从数组中易出一个或多个元素，并将新的 `item` 进行替换。
-    - `star` 是指移除元素开始的位置
-    - `deleteCount` 是指移除的个数
-    - 若有额外的参数，则默认会插入到移除元素的位置
-
-```javascript
-var arr4 = ["王花花", "赵光光", "李大脚"];
-arr4.splice(1, 1, "孙漂亮");
-console.log(arr4); // [ '王花花', '孙漂亮', '李大脚' ]
-```
-
-- `array.unshift(item..)`
-  - `unshift` 方法会把 `item` 插入到数组的开始部分，并且返回数组的新长度
-
-```javascript
-var arr5 = ["王花花", "赵光光", "李大脚"];
-arr5.unshift("孙漂亮");
-console.log(arr5); //[ '孙漂亮', '王花花', '赵光光', '李大脚' ]
-```
-
-- - `unshift` 方法可以用如下方式实现
-
-```javascript
-var arr6 = ["王花花", "赵光光", "李大脚"];
-Array.prototype.fakeunshift = function () {
-  this.splice.apply(
-    this,
-    [0, 0].concat(Array.prototype.slice.apply(arguments))
-  );
-  return this.length;
-};
-arr6.fakeunshift("孙漂亮");
-console.log(arr6); //[ '孙漂亮', '王花花', '赵光光', '李大脚' ]
-```
+---
 
 ---
 
