@@ -225,6 +225,18 @@ let newStr = str.search(reg); // 7
 let gloStr = str.search(regGlobal); // 7
 ```
 
+#### string.slice(start,end)
+
+- `slice` 方法复制 `string` 的一部分来构造一个新字符串
+- 若 `start` 参数为负数，它将**与 `string.length` 相加**
+- `end` 为要取的**最后一个字符的位置+1**
+
+```javascript
+let str = "0123456789"; //length=10
+let newStr = str.slice(0, 6); // 012345
+let erroStr = str.slice(-3); // 789
+```
+
 ---
 
 ---
