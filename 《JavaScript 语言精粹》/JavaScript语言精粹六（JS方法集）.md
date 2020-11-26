@@ -237,6 +237,21 @@ let newStr = str.slice(0, 6); // 012345
 let erroStr = str.slice(-3); // 789
 ```
 
+#### string.split(separator,limit)
+
+- `split` 方法把这个 `string`分隔成片段创建一个数组
+- `separator` 允许是字符串或正则表达式，若为空则返回单字符数组
+- `limit` 会限制被分割的片段数量
+- 注：**此方法的使用频率挺高的**
+
+```javascript
+let str = "abcde";
+let newArr1 = str.split(); // [ 'abcde' ]
+let newArr2 = str.split(""); // [ 'a', 'b', 'c', 'd', 'e']
+let flagArr = str.split("", 3); // [ 'a', 'b', 'c' ]
+let pickArr = str.split("b"); // [ 'a', 'cde' ]
+```
+
 ---
 
 ---
