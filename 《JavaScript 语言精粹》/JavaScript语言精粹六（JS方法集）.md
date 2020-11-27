@@ -257,7 +257,7 @@ let pickArr = str.split("b"); // [ 'a', 'cde' ]
 - `substring` 方法与 `slice` 作用相同，只是它不接受负数
 - 注：**因此平时使用 `slice` 更好一些**
 
-#### string.toLocaleLowerCase()& string.toLocaleUpperCase()&
+#### string.toLocaleLowerCase()& string.toLocaleUpperCase()
 
 - `toLocaleLowerCase` 方法返回一个全新全**小写字符串**
 - `toLocaleUpperCase` 方法返回一个全新全**大写字符串**
@@ -270,15 +270,21 @@ let upStr = str.toLocaleUpperCase(); // ABCDE
 let lowerStr = str.toLocaleLowerCase(); // abcde
 ```
 
----
+#### string.fromCharCode()
 
----
+- `fromCharCode` 方法是通过字符编码找到对应字符并拼接
+- 注： 该方法返回一个字符串
+
+```javascript
+let char = String.fromCharCode(67, 97, 116); //Cat
+console.log(typeof char); // string
+```
 
 ---
 
 ## 总结：
 
-> 本章节描述的是在`JavaScript`语言中的数组的一些核心且常用的知识点，我手写了一些例子加个人总结，同时移除一些正则相关知识点（因为它的时间投入/收获比实在太低了），数组因为内容多单独分一个章节，下个章节总结，`Function、Number、String、Object` 等特性。
+> 本章节描述的是`Function、Number、String、Object` 等常用方法集，并且为便于理解，给出了官方 API 实现的原理。
 
 ```
 
