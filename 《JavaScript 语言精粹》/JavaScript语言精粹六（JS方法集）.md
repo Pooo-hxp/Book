@@ -252,6 +252,24 @@ let flagArr = str.split("", 3); // [ 'a', 'b', 'c' ]
 let pickArr = str.split("b"); // [ 'a', 'cde' ]
 ```
 
+#### string.substring(start,end)
+
+- `substring` 方法与 `slice` 作用相同，只是它不接受负数
+- 注：**因此平时使用 `slice` 更好一些**
+
+#### string.toLocaleLowerCase()& string.toLocaleUpperCase()&
+
+- `toLocaleLowerCase` 方法返回一个全新全**小写字符串**
+- `toLocaleUpperCase` 方法返回一个全新全**大写字符串**
+- 冷知识：`**toLocaleUpperCase**` 是用来处理土耳其语
+- 注： `i` 大写是-->`İ` 而不是 ` I`
+
+```javascript
+let str = "abCdE";
+let upStr = str.toLocaleUpperCase(); // ABCDE
+let lowerStr = str.toLocaleLowerCase(); // abcde
+```
+
 ---
 
 ---
