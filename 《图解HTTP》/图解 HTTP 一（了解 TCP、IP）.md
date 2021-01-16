@@ -46,62 +46,28 @@
   - 封装成帧：帧是数据链路层的传送单位。帧长等于帧的数据部分加上帧的首尾部长度。首部和尾部（确定帧的界限）。
   - 差错检验：实现无比特差错。
 
-#### string.slice(start,end)
+### **TCP/IP 通信传输流**
 
-- `slice` 方法复制 `string` 的一部分来构造一个新字符串
-- 若 `start` 参数为负数，它将**与 `string.length` 相加**
-- `end` 为要取的**最后一个字符的位置+1**
+#### 通信传输流程图（选自--《图解 HTTP》丛书），如下所示：
 
-```javascript
-let str = "0123456789"; //length=10
-let newStr = str.slice(0, 6); // 012345
-let erroStr = str.slice(-3); // 789
-```
-
-#### string.split(separator,limit)
-
-- `split` 方法把这个 `string`分隔成片段创建一个数组
-- `separator` 允许是字符串或正则表达式，若为空则返回单字符数组
-- `limit` 会限制被分割的片段数量
-- 注：**此方法的使用频率挺高的**
-
-```javascript
-let str = "abcde";
-let newArr1 = str.split(); // [ 'abcde' ]
-let newArr2 = str.split(""); // [ 'a', 'b', 'c', 'd', 'e']
-let flagArr = str.split("", 3); // [ 'a', 'b', 'c' ]
-let pickArr = str.split("b"); // [ 'a', 'cde' ]
-```
-
-#### string.substring(start,end)
-
-- `substring` 方法与 `slice` 作用相同，只是它不接受负数
-- 注：**因此平时使用 `slice` 更好一些**
-
-#### string.toLocaleLowerCase()& string.toLocaleUpperCase()
-
-- `toLocaleLowerCase` 方法返回一个全新全**小写字符串**
-- `toLocaleUpperCase` 方法返回一个全新全**大写字符串**
-- 冷知识：`**toLocaleUpperCase**` 是用来处理土耳其语
-- 注： `i` 大写是-->`İ` 而不是 ` I`
-
-```javascript
-let str = "abCdE";
-let upStr = str.toLocaleUpperCase(); // ABCDE
-let lowerStr = str.toLocaleLowerCase(); // abcde
-```
-
-#### string.fromCharCode()
-
-- `fromCharCode` 方法是通过字符编码找到对应字符并拼接
-- 注： 该方法返回一个字符串
-
-```javascript
-let char = String.fromCharCode(67, 97, 116); //Cat
-console.log(typeof char); // string
-```
+![](https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/28ab6a70286c42c2a1aa9c2ed01626a1~tplv-k3u1fbpfcp-watermark.image)
 
 ---
+
+- `利用TCP/IP协议族网络通信时，通过分层顺序与对方通信`
+  - 发送方：从应用层往下进行
+  - 接收方：从下往应用层进行
+- 举例 **`HTTP`**,客户端作为发送端，请求某个 `web` 页面数据
+  - 首先传输层（`TCP协议`）
+    - 把从应用层接受的数据（HTTP 请求报文）分割
+    - 在各个报文上打上标记序号（**TCP 具有按序性**）及端口号
+    - 转发给网络层
+  - 其次到网络层（`IP协议`）
+    - 在传输层整理完的数据基础上，增加通信目的地的 `MAC地址`
+    - 转发给链路层
+  - 然后到接收端的链路层
+    - 接收数据，按顺序往上层发送
+    - 传输到服务器端的应用层时，服务器才接收到客户端发送来的 HTTP 请求
 
 ## 总结：
 
