@@ -107,6 +107,31 @@ IP 地址指明了节点被分配的地址。MAC 地址是指网卡所属的固�
 
   ![](https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/88b270d337f54f428c5208b55dd77317~tplv-k3u1fbpfcp-watermark.image)
 
+#### TCP 协议：
+
+- 确保可靠的 TCP 协议 概念：
+
+  - 字节流服务：便于传输，把数据分割成以报文段为单位的数据包
+  - TCP 协议提供字节流服务，为了便于传送大体系数据
+  - TCP 协议能确保数据到达目标
+  - `TCP` 协议位于 **传输层**
+
+- 如何确保数据到达目标 ？
+  - TCP 协议使用了`三次握手（three-way handshaking）`策略
+  - TCP 将数据包传送后，会向对方确认是否成功（ UDP 不会）
+
+`'握手'` 中使用`TCP`的标志）—— `SYN（synchronize） `和 `ACK（acknowledgement）`
+
+- 1.发送端先发送一个带`SYN 标志`的数据包给对方。
+- 2.接收端收到后，回传一个带有`SYN/ACK`标志的数据包以示传达确认信息
+- 3.最后，发送端再回传一个带`ACK`标志的数据包，代表“握手”结束。
+- 补充：若上述任意过程中断，则重新来过
+- 如下图所示（截图来源--《图解 HTTP》丛书）：
+
+  > 截图来源--《图解 HTTP》丛书） 需要这本书的 PDF 版，可留邮箱。
+
+  ![](https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/6df715ff994440bdb06f31e2d7af3c8c~tplv-k3u1fbpfcp-watermark.image)
+
 ## 总结：
 
 > 虽然是科班出身，可是面对这些基础我还是能感到压力，想起大学时经常背背应付考试就觉得羞愧，从事这个行业不能全部为了业务，知其然也要知其所以然，下定决心要把这些知识再重新学习一遍。
