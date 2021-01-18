@@ -155,11 +155,24 @@ IP 地址指明了节点被分配的地址。MAC 地址是指网卡所属的固�
 
 #### 各协议与 HTTP 协议的关系及发挥的作用
 
-- 如下图所示格协议之间协同合作，完成通信及数据交换：
+- 如下图所示各协议之间协同合作，完成通信及数据交换：
 
   > 截图来源--《图解 HTTP》丛书）
 
   ![](https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/12b8de53403b4285b3c56c5212a15416~tplv-k3u1fbpfcp-watermark.image)
+
+#### URI 和 URL
+
+- **URI 和 URL 概念**：
+  - URI 为统一资源 **标识符**
+  - URL 为统一资源 **定位符**
+  - 浏览器访问 web 页面时，需要输入的网页地址就是 URL（_废话_ ）
+- 关于统一资源标识符号 `URI`
+  - URI 是 `Uniform Resource Identifier` 的缩写
+    - **Uniform** 指统一的格式，便于处理不同类型的资源
+    - **Resource** 指可标识的任何东西，大多数都可以作为资源
+    - **Identifier** 指可标识的对象，也称为标识符
+  - 综述：**`URI 是某个协议方案标识的资源的定位标识符`**
 
 ## 总结：
 
