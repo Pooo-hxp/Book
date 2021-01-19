@@ -161,13 +161,20 @@ IP 地址指明了节点被分配的地址。MAC 地址是指网卡所属的固�
 
   ![](https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/12b8de53403b4285b3c56c5212a15416~tplv-k3u1fbpfcp-watermark.image)
 
-#### URI 和 URL
+#### URL 和 URI
 
-- **URI 和 URL 概念**：
-  - URI 为统一资源 **标识符**
-  - URL 为统一资源 **定位符**
-  - 浏览器访问 web 页面时，需要输入的网页地址就是 URL（_废话_ ）
-- 关于统一资源标识符号 `URI`
+- **URL 和 URI 概念**：
+  - URL 为统一资源 **定位符** ---URI 为统一资源 **标识符**
+  - URI 分为三种，URL or URN or （URL and URI）目前所有的 URI 几乎都是 URL
+  - `URL 可以看作是 URI 的子集`。
+  - 浏览器访问 web 页面时，需要输入的网页地址认为是 URL（_不是废话_ ）
+- 统一资源定位符 `URL`
+
+  - URL 是 `Uniform Resource Locator` 的缩写
+    - URL 由三部分组成：资源类型、存放资源的主机域名、资源文件名
+    - （也可认为由 4 部分组成：协议、主机、端口、路径）
+
+- 统一资源标识符号 `URI`
 
   - URI 是 `Uniform Resource Identifier` 的缩写
     - **Uniform** 指统一的格式，便于处理不同类型的资源
@@ -177,10 +184,13 @@ IP 地址指明了节点被分配的地址。MAC 地址是指网卡所属的固�
     - 协议方案：访问资源所使用的协议类型名称
     - 比如：使用 HTTP（HTTPS）时，协议方案就是 http(https)
   - 绝对的 URI 格式：
+    ![](https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/3e546d0225a042a6a7775d754dc07553~tplv-k3u1fbpfcp-watermark.image)
 
-    > 截图来源--《图解 HTTP》丛书）
+- 知乎示例
+  - URI：我的身份证号
+  - URL：人类协议://中国/河南省/郑州市/光明路/3 栋 4 号/小土豆.人
 
-    ![](https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/12b8de53403b4285b3c56c5212a15416~tplv-k3u1fbpfcp-watermark.image)
+总结：URI 为标识符，URL 为定位符，两者都可以确定唯一资源，其中 **`通过地址规则实现的 URI 可以被称作 URL ，URL 是 URI 的一种表现，所以 URI 作为更宽泛的定义包含了 URL`**
 
 ## 总结：
 
