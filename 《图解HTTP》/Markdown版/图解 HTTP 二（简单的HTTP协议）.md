@@ -54,9 +54,60 @@
 
   ![](https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/aa6d529fa2c74c2996ec4d899e1db23f~tplv-k3u1fbpfcp-watermark.image)
 
-### **与 HTTP 密切相关的协议：IP、TCP 和 DNS**
+##### PUT：传输文件
 
-#### IP 协议：
+- `PUT `方法，在请求报文的主体中包含文件内容，保存到请求 URI 指定位置
+- 由于 HTTP/1.1 的`PUT`方法无验证机制，因此存在安全性问题
+- 因此` PUT` 方法一般不开放
+
+##### HEAD：获得报文首部
+
+- `HEAD` 方法用于确认 URI 的有效性及资源更新的日期时间等
+- HEAD 方法与 GET 相同，只是不返回报文主体部分
+
+#### **使用 Cookie 的状态管理**
+
+- 由于 HTTP 是无状态协议，不保存之前发送过的请求与响应状态，无法依据之前状态进行本次请求处理
+- 因此会出现每次跳转新页面，都需要再次登录这种低效的事件
+- 解决方案：
+
+  - 每次请求报文中附加参数，管理登录状态
+  - 但管理全部客户端状态又会产生很大的负担
+
+    ![](https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/510b672a9b3f4c60bd19d0716f0f4dca~tplv-k3u1fbpfcp-watermark.image)
+
+- 正是基于上方矛盾的考虑，所以引入了 `Cookie` 技术
+
+  - 它会通过在请求和响应报文中写入 `Cookie` 信息来控制客户端状态
+  - 通过发送响应报文中 `Set-Cookie` 的字段信息，通知 **客户端保存 `Cookie`**
+
+  ![](https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/b5704fe229dc4e37b0957e32c0a046dd~tplv-k3u1fbpfcp-watermark.image)
+
+  - 下次客户端向服务端发起请求时，自动在请求报文中加入 `Cookie` 值
+  - 服务端接收客户端发送的 `Cookie` 后，会与服务器比对，找出之前状态信息
+
+  ![](https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/f34f55a3a8554f88afc2b535a761cc7c~tplv-k3u1fbpfcp-watermark.image)
+
+  - 上图介绍了理论上的交互场景，具体发送报文如下
+
+  ```JavaScript
+  /* 1.请求报文（无cookie信息）*/
+  GET /reader/ HTTP/1.1
+  Host: hackr.jp
+
+  /* 2. 响应报文（服务器端生成 Cookie 信息）*/
+  HTTP/1.1 200 OK
+  Date: Thu, 12 Jul 2012 07:12:20 GMT
+  Server: Apache
+  ＜Set-Cookie: sid=1342077140226724; path=/; expires=Wed,
+  10-Oct-12 07:12:20 GMT＞
+  Content-Type: text/plain; charset=UTF-8
+
+  /*3. 请求报文（自动发送保存着的 Cookie 信息）*/
+  GET /image/ HTTP/1.1
+  Host: hackr.jp
+  Cookie: sid=1342077140226724
+  ```
 
 ## 总结：
 
