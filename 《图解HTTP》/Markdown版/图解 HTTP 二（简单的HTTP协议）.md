@@ -172,7 +172,21 @@
 
   - 表示客户端发送附带条件的请求时，服务器端允许请求访问资源，但未满足条件的情况。
 
-  ![](https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/7cadeee58d034dd3aee269361140f41d~tplv-k3u1fbpfcp-watermark.image)
+    ![](https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/7cadeee58d034dd3aee269361140f41d~tplv-k3u1fbpfcp-watermark.image)
+
+- 4XX 客户端错误
+
+  > 4XX 的响应结果表明客户端是发生错误的原因所在。
+
+- 400 Bad Request：该状态码表示请求报文中存在语法错误
+- 401 Unauthorized（未经授权）
+  - 表示发送的请求需要有通过 HTTP 认证（BASIC 认证、DIGEST 认证）的认证信息
+  - 若之前已进行过 1 次请求，则表示用户认证失败
+- 403 Forbidden（禁止的）
+  - 表明对请求资源的访问被服务器拒绝
+- 404 Not Found（未找到）
+  - 表明服务器上无法找到请求的资源
+-
 
 ## 总结：
 
