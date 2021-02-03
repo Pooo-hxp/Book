@@ -118,16 +118,53 @@
   - 服务端：称为相应报文
 - `HTTP` 报文内容分为，报文首部和报文主体（非必须）
 - 请求报文与响应报文结构如下
+
   - 请求行：包含请求方法，请求 URI 和 HTTP 版本。
   - 状态行：包含响应结果的状态码，原因短语和 HTTP 版本。
   - 首部字段：包含请求和响应的各种条件和属性的各类首部。
     - 一般有：通用，请求，响应，实体四种首部。
+
+  ![](https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/e60e2e9bce9841a2b7ea7e76ad8287a2~tplv-k3u1fbpfcp-watermark.image)
 
 ---
 
 #### HTTP 状态码
 
 - 状态码表示客户端 HTTP 请求的结果、标记服务器端的处理是否正常、通知出现的错误等。
+
+![](https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/3dd0e8abef884583b0696cb2ee5a8bca~tplv-k3u1fbpfcp-watermark.image)
+
+- 状态码的类别
+
+  |     | 类别                             | 原因短语                   |
+  | --- | -------------------------------- | -------------------------- |
+  | 1XX | Informational（信息性状态码）    | 接收的请求正在处理         |
+  | 2XX | Success（成功状态码）            | 请求正常处理完毕           |
+  | 3XX | Redirection（重定向状态码）      | 需要进行附加操作以完成请求 |
+  | 4XX | Client Error（客户端错误状态码） | 服务器无法处理请求         |
+  | 5XX | Server Error（服务器错误状态码） | 服务器处理请求出错         |
+
+- 常用的状态码解析为
+
+  - 200 OK ：表示客户端请求在服务器端正常处理。
+  - 204 No Content：
+    - 表服务端对请求成功处理，但在返回的响应报文中不含实体的主体部分
+    - 在只需客户端往服务器发送信息，而对客户端无需发送新信息下使用。
+  - 206 Partial Content
+    - 该状态码表示客户端进行了范围请求
+    - 响应报文中包含由 Content-Range 指定范围的实体内容
+      ![](https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/7178a479da6848d39994a524b7fc9fe6~tplv-k3u1fbpfcp-watermark.image)
+  - 3XX 重定向：表明浏览器需要执行某些特殊的处理以正确处理请求。
+  - 301 Moved Permanently（永久性重定向）
+    - 表示请求的资源已被分配了新的 URI
+    - 若把资源对应的 URI 保存为书签，则应按 Location 首部字段提示的 URI 重新保存
+  - 302 Found（临时重定向）
+    - 与 301 类似，只不过它表示临时重定向
+    - 此时不会像 301 那样，去更新书签
+  - 303 See Other
+    - 表示请求对应的资源存在另一个 URI，应使用 GET 方法定向获取请求的资源。
+
+注：当 301、302、303 响应状态码返回时，几乎所有的浏览器都会把 POST 改成 GET，并删除请求报文内的主体，之后请求会自动再次发送。
 
 ## 总结：
 
