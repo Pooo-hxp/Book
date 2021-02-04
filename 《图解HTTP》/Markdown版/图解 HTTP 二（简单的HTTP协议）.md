@@ -282,10 +282,10 @@
 
 - 当使用 `public` 指令时，则明确表明其他用户也可利用缓存。
   > Cache-Control: public
-- 当使用`private` 指令 响应只以特定的用户作为对象，与 `public` 指令行为相反。
+- 当使用 `private` 指令 响应只以特定的用户作为对象，与 `public` 指令行为相反。
 
   ![](https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/d2e6b76ba80b4f3fae2da2f25572f3f8~tplv-k3u1fbpfcp-watermark.image)
 
 ## 总结：
 
-URI 为标识符，URL 为定位符，两者都可以确定唯一资源，其中 **`通过地址规则实现的 URI 可以被称作 URL ，URL 是 URI 的一种表现，所以 URI 作为更宽泛的定义包含了 URL`**
+**HTTP 协议的请求和响应报文中必定包含 HTTP 首部，虽然普通人在实际使用中根本感受不到它，但对于开发者来说，掌握这些信息，不仅能学会请求报文发送时的各种配置，更便于提升在实际生产中 debug 的效率**
