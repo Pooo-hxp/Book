@@ -270,6 +270,21 @@
   |max-stale( = [ 秒]) |可省略| 接收已过期的响应|
   |min-fresh = [ 秒] |必需 |期望在指定时间内的响应仍有效|
   |only-if-cached |无 |从缓存获取资源|
+- 缓存响应指令
+  | 指令| 参数 | 说明 |
+  | ------------------ | ------------------ | ---------------------------- |
+  |public |无 |可向任意方提供响应的缓存|
+  |private |可省略 |仅向特定用户返回响应|
+  |no-cache |可省略 |缓存前必须先确认其有效性|
+  |no-store |无 |不缓存请求或响应的任何内容|
+  |no-transform |无 |代理不可更改媒体类型|
+  |must-revalidate |无 |可缓存但必须再向源服务器进行确认|
+
+- 当使用 `public` 指令时，则明确表明其他用户也可利用缓存。
+  > Cache-Control: public
+- 当使用`private` 指令 响应只以特定的用户作为对象，与 `public` 指令行为相反。
+
+  ![](https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/d2e6b76ba80b4f3fae2da2f25572f3f8~tplv-k3u1fbpfcp-watermark.image)
 
 ## 总结：
 
