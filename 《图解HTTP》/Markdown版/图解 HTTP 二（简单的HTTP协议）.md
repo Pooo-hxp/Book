@@ -186,7 +186,42 @@
   - 表明对请求资源的访问被服务器拒绝
 - 404 Not Found（未找到）
   - 表明服务器上无法找到请求的资源
--
+- 5XX 服务器错误
+  > 5XX 的响应结果表明服务器本身发生错误。
+- 500 Internal Server Error（内部服务器错误）
+  - 表明服务器端在执行请求时发生了错误
+  - 也可能是 Web 应用存在的 bug 或某些临时的故障
+- 503 Service Unavailable（暂停服务）
+
+  - 表明服务器暂时处于超负载或进行停机维护，现在无法处理请求
+
+    ![](https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/b4cb7a5ba2c44e08a6df04d2d4f31157~tplv-k3u1fbpfcp-watermark.image)
+
+### ** HTTP 首部字段**
+
+#### 4 种 HTTP 首部字段类型
+
+- 通用首部字段（General Header Fields）
+  - 请求报文和响应报文两方都会使用的首部。
+- 请求首部字段（Request Header Fields）
+  - 客户端向服务器端发送请求报文时使用的首部。补充请求的附加内容、响应优先级等。
+- 响应首部字段（Response Header Fields）
+  - 服务器端向客户端返回响应报文时使用的首部。补充响应的附加内容，要求客户端附加的信息。
+- 实体首部字段（Entity Header Fields）
+  - 针对请求报文和响应报文的实体部分使用的首部。补充资源内容更新时间等信息。
+
+#### 通用首部字段表
+
+| 首部字段名        | 说明                       |
+| ----------------- | -------------------------- |
+| Cache-Control     | 控制缓存的行为             |
+| Connection        | 逐跳首部、连接的管理       |
+| Date              | 创建报文的日期时间         |
+| Pragma            | 报文指令                   |
+| Trailer           | 报文末端的首部一览         |
+| Transfer-Encoding | 指定报文主体的传输编码方式 |
+| Via               | 代理服务器的相关信息       |
+| Warning           | 错误通知                   |
 
 ## 总结：
 
