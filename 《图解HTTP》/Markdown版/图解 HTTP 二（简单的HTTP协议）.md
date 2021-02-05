@@ -18,7 +18,7 @@
 
   ![](https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/1ff4b519bd2d45d0b282121868a319ba~tplv-k3u1fbpfcp-watermark.image)
 
-- **`请求必定是客户端，相应的必定为服务端`，如下图：**
+- **`请求必定是客户端，响应的必定为服务端`，如下图：**
 
   ![](https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/a56483b3e8754777a6c39f30b9595c7f~tplv-k3u1fbpfcp-watermark.image)
 
@@ -88,25 +88,9 @@
 
   ![](https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/f34f55a3a8554f88afc2b535a761cc7c~tplv-k3u1fbpfcp-watermark.image)
 
-  - 上图介绍了理论上的交互场景，具体发送报文如下
-
   ```JavaScript
   /* 1.请求报文（无cookie信息）*/
-  GET /reader/ HTTP/1.1
-  Host: hackr.jp
 
-  /* 2. 响应报文（服务器端生成 Cookie 信息）*/
-  HTTP/1.1 200 OK
-  Date: Thu, 12 Jul 2012 07:12:20 GMT
-  Server: Apache
-  ＜Set-Cookie: sid=1342077140226724; path=/; expires=Wed,
-  10-Oct-12 07:12:20 GMT＞
-  Content-Type: text/plain; charset=UTF-8
-
-  /*3. 请求报文（自动发送保存着的 Cookie 信息）*/
-  GET /image/ HTTP/1.1
-  Host: hackr.jp
-  Cookie: sid=1342077140226724
   ```
 
 ### **报文中的 HTTP 信息**
@@ -117,14 +101,6 @@
   - 客户端：称为请求报文
   - 服务端：称为相应报文
 - `HTTP` 报文内容分为，报文首部和报文主体（非必须）
-- 请求报文与响应报文结构如下
-
-  - 请求行：包含请求方法，请求 URI 和 HTTP 版本。
-  - 状态行：包含响应结果的状态码，原因短语和 HTTP 版本。
-  - 首部字段：包含请求和响应的各种条件和属性的各类首部。
-    - 一般有：通用，请求，响应，实体四种首部。
-
-  ![](https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/e60e2e9bce9841a2b7ea7e76ad8287a2~tplv-k3u1fbpfcp-watermark.image)
 
 ---
 
@@ -146,24 +122,6 @@
 
 - 常用的状态码解析为
 
-  - 200 OK ：表示客户端请求在服务器端正常处理。
-  - 204 No Content：
-    - 表服务端对请求成功处理，但在返回的响应报文中不含实体的主体部分
-    - 在只需客户端往服务器发送信息，而对客户端无需发送新信息下使用。
-  - 206 Partial Content
-    - 该状态码表示客户端进行了范围请求
-    - 响应报文中包含由 Content-Range 指定范围的实体内容
-      ![](https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/7178a479da6848d39994a524b7fc9fe6~tplv-k3u1fbpfcp-watermark.image)
-  - 3XX 重定向：表明浏览器需要执行某些特殊的处理以正确处理请求。
-  - 301 Moved Permanently（永久性重定向）
-    - 表示请求的资源已被分配了新的 URI
-    - 若把资源对应的 URI 保存为书签，则应按 Location 首部字段提示的 URI 重新保存
-  - 302 Found（临时重定向）
-    - 与 301 类似，只不过它表示临时重定向
-    - 此时不会像 301 那样，去更新书签
-  - 303 See Other
-    - 表示请求对应的资源存在另一个 URI，应使用 GET 方法定向获取请求的资源。
-
 ```!
 当 301、302、303 响应状态码返回时，几乎所有的浏览器都会把 POST 改成 GET，并删除请求报文内的主体，之后请求会自动再次发送。
 ```
@@ -176,115 +134,17 @@
 
 - 4XX 客户端错误
 
-  > 4XX 的响应结果表明客户端是发生错误的原因所在。
-
-- 400 Bad Request：该状态码表示请求报文中存在语法错误
-- 401 Unauthorized（未经授权）
-  - 表示发送的请求需要有通过 HTTP 认证（BASIC 认证、DIGEST 认证）的认证信息
-  - 若之前已进行过 1 次请求，则表示用户认证失败
-- 403 Forbidden（禁止的）
-  - 表明对请求资源的访问被服务器拒绝
-- 404 Not Found（未找到）
-  - 表明服务器上无法找到请求的资源
-- 5XX 服务器错误
-  > 5XX 的响应结果表明服务器本身发生错误。
-- 500 Internal Server Error（内部服务器错误）
-  - 表明服务器端在执行请求时发生了错误
-  - 也可能是 Web 应用存在的 bug 或某些临时的故障
-- 503 Service Unavailable（暂停服务）
-
-  - 表明服务器暂时处于超负载或进行停机维护，现在无法处理请求
-
-    ![](https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/b4cb7a5ba2c44e08a6df04d2d4f31157~tplv-k3u1fbpfcp-watermark.image)
-
 ### ** HTTP 首部字段**
 
 #### 4 种 HTTP 首部字段类型
 
-- 通用首部字段（General Header Fields）
-  - 请求报文和响应报文两方都会使用的首部。
-- 请求首部字段（Request Header Fields）
-  - 客户端向服务器端发送请求报文时使用的首部。补充请求的附加内容、响应优先级等。
-- 响应首部字段（Response Header Fields）
-  - 服务器端向客户端返回响应报文时使用的首部。补充响应的附加内容，要求客户端附加的信息。
-- 实体首部字段（Entity Header Fields）
-  - 针对请求报文和响应报文的实体部分使用的首部。补充资源内容更新时间等信息。
-
 #### `首部字段表`
 
-- 通用首部字段表
-  | 首部字段名 | 说明 |
-  | ----------------- | -------------------------- |
-  | Cache-Control | 控制缓存的行为 |
-  | Connection | 逐跳首部、连接的管理 |
-  | Date | 创建报文的日期时间 |
-  | Pragma | 报文指令 |
-  | Trailer | 报文末端的首部一览 |
-  | Transfer-Encoding | 指定报文主体的传输编码方式 |
-  | Via | 代理服务器的相关信息 |
-  | Warning | 错误通知 |
-
-- 请求首部字段（部分）
-
-  | 首部字段名          | 说明                                 |
-  | ------------------- | ------------------------------------ |
-  | Accept              | 用户代理可处理的媒体类型             |
-  | Accept-Charset      | 优先的字符集                         |
-  | Accept-Language     | 优先的语言（自然语言）               |
-  | Authorization       | Web 认证信息                         |
-  | Expect              | 期待服务器的特定行为                 |
-  | From                | 用户的电子邮箱地址                   |
-  | Host                | 请求资源所在服务器                   |
-  | If-Match            | 比较实体标记（ETag）                 |
-  | If-Modified-Since   | 比较资源的更新时间                   |
-  | If-None-Match       | 比较实体标记（与 If-Match 相反）     |
-  | If-Range            | 资源未更新时发送实体 Byte 的范围请求 |
-  | Proxy-Authorization | 代理服务器要求客户端的认证信息       |
-  | Referer             | 对请求中 URI 的原始获取方            |
-  | User-Agent HTTP     | 客户端程序的信息                     |
-
-- 响应首部字段（部分）
-
-  | 首部字段名         | 说明                         |
-  | ------------------ | ---------------------------- |
-  | Accept-Ranges      | 是否接受字节范围请求         |
-  | Age                | 推算资源创建经过时间         |
-  | ETag               | 资源的匹配信息               |
-  | Location           | 令客户端重定向至指定 URI     |
-  | Proxy-Authenticate | 代理服务器对客户端的认证信息 |
-  | Retry-After        | 对再次发起请求的时机要求     |
-  | Server HTTP        | 服务器的安装信息             |
-  | Vary               | 代理服务器缓存的管理信息     |
-  | WWW-Authenticate   | 服务器对客户端的认证信息     |
-
-#### `HTTP缓存——Cache-Control`
+#### `HTl`
 
 - 通过指定首部字段 Cache-Control 的指令，操作缓存的工作机制。
 - 指令的参数是可选的，多个指令之间通过“,”分隔。
 - 缓存请求指令表
-  | 指令| 参数 | 说明 |
-  | ------------------ | ------------------ | ---------------------------- |
-  |no-cache| 无| 强制向源服务器再次验证|
-  |no-store| 无 |不缓存请求或响应的任何内容|
-  |max-age = [ 秒]| 必需| 响应的最大 Age 值|
-  |max-stale( = [ 秒]) |可省略| 接收已过期的响应|
-  |min-fresh = [ 秒] |必需 |期望在指定时间内的响应仍有效|
-  |only-if-cached |无 |从缓存获取资源|
-- 缓存响应指令
-  | 指令| 参数 | 说明 |
-  | ------------------ | ------------------ | ---------------------------- |
-  |public |无 |可向任意方提供响应的缓存|
-  |private |可省略 |仅向特定用户返回响应|
-  |no-cache |可省略 |缓存前必须先确认其有效性|
-  |no-store |无 |不缓存请求或响应的任何内容|
-  |no-transform |无 |代理不可更改媒体类型|
-  |must-revalidate |无 |可缓存但必须再向源服务器进行确认|
-
-- 当使用 `public` 指令时，则明确表明其他用户也可利用缓存。
-  > Cache-Control: public
-- 当使用 `private` 指令 响应只以特定的用户作为对象，与 `public` 指令行为相反。
-
-  ![](https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/d2e6b76ba80b4f3fae2da2f25572f3f8~tplv-k3u1fbpfcp-watermark.image)
 
 ## 总结：
 
