@@ -21,23 +21,39 @@
 
 注：`互联网上的任何角落都存在通信内容被窃听的风险`
 
-#### POST：传输实体主体
+#### 通信加密
 
-- `GET` 方法也可以进行实体传输，但一般只使用`POST`传输
-- `POST` 方法主要也不是为了获取响应的主体内容
+- `HTTP` 协议本身没有加密机制，但可以与 SSL（Secure Socket Layer）组合使用
+- SSL 建立安全通信线路，然后进行 HTTP 通信
+- 这种与 SSL 组合的 HTTP 被称之为 HTTPS（HTTP Secure，超文本传输安全协议）
 
-  ![](https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/aa6d529fa2c74c2996ec4d899e1db23f~tplv-k3u1fbpfcp-watermark.image)
+  ![](https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/59dc58bec5c041a7ab9682ac73707fac~tplv-k3u1fbpfcp-watermark.image)
 
-#### PUT：传输文件
+#### 验证通信方身份
 
-- `PUT `方法，在请求报文的主体中包含文件内容，保存到请求 URI 指定位置
-- 由于 HTTP/1.1 的`PUT`方法无验证机制，因此存在安全性问题
-- 因此` PUT` 方法一般不开放
+- `HTTP` 协议通信时，不会确认通信方
+- 而服务器对请求者也是来者不拒，都会返回响应
 
-#### HEAD：获得报文首部
+  ![](https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/40b106d97c7149d2b629bdc9a425137f~tplv-k3u1fbpfcp-watermark.image)
 
-- `HEAD` 方法用于确认 URI 的有效性及资源更新的日期时间等
-- HEAD 方法与 GET 相同，只是不返回报文主体部分
+- 不确认通信方则会存在以下隐患
+  - 有可能遭遇伪装的 web 服务器
+  - 有可能遭遇伪装的客户端
+  - 无法确定通信的对方是否具备访问权限
+  - 重点：因无意义请求也会接收，容易遭遇 DoS 攻击（拒绝服务攻击）
+- 查明对方证书
+
+  - 以上可知用 HTTP 协议无法确定通信方
+  - 使用 SSL 可用于确定对方身份
+  - 证书有可信任第三方颁发，可证明客户端或服务端实际存在
+
+  ![](https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/c25ceb57c04a4100b96140c3423b7489~tplv-k3u1fbpfcp-watermark.image)
+
+#### 无法确认报文完整性，则容易被篡改
+
+- HTTP 协议无法证明通信的报文完整性，所以具有风险性
+- 比如：发出请求，从某服务器接收到的网页文件，有可能是篡改过的
+- 遭攻击者拦截并篡改内容的攻击称为中间人攻击
 
 ### **使用 Cookie 的状态管理**
 
