@@ -292,6 +292,30 @@ arr4.splice(1, 1, "孙漂亮");
 console.log(arr4); // [ '王花花', '孙漂亮', '李大脚' ]
 ```
 
+- `array.unshift(item..)`
+  - `unshift` 方法会把 `item` 插入到数组的开始部分，并且返回数组的新长度
+
+```javascript
+var arr5 = ["王花花", "赵光光", "李大脚"];
+arr5.unshift("孙漂亮");
+console.log(arr5); //[ '孙漂亮', '王花花', '赵光光', '李大脚' ]
+```
+
+- - `unshift` 方法可以用如下方式实现
+
+```javascript
+var arr6 = ["王花花", "赵光光", "李大脚"];
+Array.prototype.fakeunshift = function () {
+  this.splice.apply(
+    this,
+    [0, 0].concat(Array.prototype.slice.apply(arguments))
+  );
+  return this.length;
+};
+arr6.fakeunshift("孙漂亮");
+console.log(arr6); //[ '孙漂亮', '王花花', '赵光光', '李大脚' ]
+```
+
 ---
 
 ## 总结：
