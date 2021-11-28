@@ -50,7 +50,7 @@ console.log(trs); // 3.14
 
 #### number.toString(radix)
 
-- `toPrecision` 方法是把数字类型转化为字符串
+- `toString` 方法是把数字类型转化为字符串
 - `radix`控制基数， 可选 2-36 以内,默认为 10
 - 也可简写成 `String(number)`
 - 例如：
@@ -284,8 +284,4 @@ console.log(typeof char); // string
 
 ## 总结：
 
-> 本章节描述的是`Function、Number、String、Object` 等常用方法集，并且为便于理解，给出了官方 API 实现的原理。
-
-```
-
-```
+> 本章节描述的是`Function、Number、String、Object` 等常用方法集，并且为便于理解，模拟出了官方 API 实现的原理（_大概思路是_ 我不保证一定是，但能用，emm）。
